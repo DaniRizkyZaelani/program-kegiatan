@@ -23,9 +23,7 @@ Route::get('/', function () {
 
 // Users route
 Route::get('/users', [UserController::class, 'index'])->name('users');
-Route::get('/users/create', [UserController::class, 'create'])->name(
-    'users.create'
-);
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 // Login route
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/register', [RegisterController::class, 'index']);
