@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('nama_kegiatan');
             $table->string('pengeluaran');
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 
