@@ -12,7 +12,7 @@
     <label for="password">password</label>
     <input type="password" name="password" id="name" placeholder="password" required>
 
-
+    <button type="submit">Login</button>
     
 </body>
 </html>

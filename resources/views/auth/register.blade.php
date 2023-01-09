@@ -13,6 +13,7 @@
     <input type="username" name="username" id="name" placeholder="username" autofocus required> <br>
     <label for="password">Password</label>
     <input type="password" name="password" id="name" placeholder="password" required>
+    <button type="submit">Register</button>
     
 </body>
 </html>
