@@ -25,6 +25,8 @@ Route::get('/', function () {
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::delete('/users/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
 
 // Login route
 Route::get('/login', [LoginController::class, 'index']);

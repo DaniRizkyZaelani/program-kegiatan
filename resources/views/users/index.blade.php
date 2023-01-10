@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <a href="{{ route('users.create') }}">Tambah</a>
     <table>
@@ -27,10 +29,54 @@
                     <th>{{ $value->name }}</th>
                     <th>{{ $value->username }}</th>
                     <th>{{ $value->password }}</th>
-                    <th>edit|hapus</th>
+                    <th>
+                        <a href="{{ route('users') }}/{{ $value->id }}/edit">Edit</a> |
+                        <a href="javascript:void(0)" class="btn-delete">Hapus</a>
+                    </th>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-delete').on('click', function(e) {
+                console.log('test');
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Terhapus!',
+                            'Data berhasil dihapus.',
+                            'success'
+                        ).then((result) => {
+                            $.ajax({
+                                type: "delete",
+                                url: "{{ route('users.destroy', $value->id) }}",
+                                data: {
+                                    _token: "{{ csrf_token() }}"
+                                },
+                                success: function(response) {
+                                    location.reload();
+                                }
+                            });
+                        })
+                    }
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>

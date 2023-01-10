@@ -7,18 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="#">Kembali</a>
-    <form action="#" method="post">
+    <a href="{{ route('users') }}">Kembali</a>
+    <form action="{{ route('users.store') }}" method="post">
         @csrf
+        @method('POST')
+        <input type="hidden" name="id" value="{{ $user->id }}">
         <label for="role">Role</label>
-        <input type="text" name="role" placeholder="Role">
-        <label for="nama">Nama</label>
-        <input type="text" name="nama" placeholder="Nama">
+        <input type="text" name="role" placeholder="Role" value="{{ $user->role }}">
+        <label for="name">Nama</label>
+        <input type="text" name="name" placeholder="Nama" value="{{ $user->name }}">
         <label for="username">Username</label>
-        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="username" placeholder="Username" value="{{ $user->username }}">
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password" placeholder="Password" value="{{ $user->password }}">
         <button type="submit">Simpan</button>
     </form>
 </body>
-</html>l
+</html>

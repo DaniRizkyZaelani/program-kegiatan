@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'role' => 'required',
             'name' => 'required',
             'username' => 'required',
@@ -48,13 +48,11 @@ class UserController extends Controller
             'password.required' => 'Password harus diisi',
         ]);
 
-        $user = new User([
-            'role' => $request->get('role'),
-            'name' => $request->get('name'),
-            'username' => $request->get('username'),
-            'password' => bcrypt($request->get('password')),
-        ]);
-        $user->save();
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
+        User::updateOrCreate([
+            'id' => $request->id
+        ], $validatedData);
         return redirect('/users')->with('success', 'User saved!');
     }
 
@@ -77,7 +75,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -100,6 +99,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
     }
 }
