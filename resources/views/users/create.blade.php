@@ -7,13 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="#">Kembali</a>
-    <form action="#" method="post">
+    <a href="{{ route('users') }}">Kembali</a>
+    <form action="{{ route('users.store') }}" method="post">
         @csrf
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        @endif
         <label for="role">Role</label>
         <input type="text" name="role" placeholder="Role">
-        <label for="nama">Nama</label>
-        <input type="text" name="nama" placeholder="Nama">
+        <label for="name">Nama</label>
+        <input type="text" name="name" placeholder="Nama">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="Username">
         <label for="password">Password</label>

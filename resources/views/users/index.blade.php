@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="">Tambah</a>
+    <a href="{{ route('users.create') }}">Tambah</a>
     <table>
         <thead>
             <tr>

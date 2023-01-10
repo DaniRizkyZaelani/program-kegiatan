@@ -36,7 +36,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'role' => 'required',
+            'name' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+        ], [
+            'role.required' => 'Role harus diisi',
+            'name.required' => 'Nama harus diisi',
+            'username.required' => 'Username harus diisi',
+            'password.required' => 'Password harus diisi',
+        ]);
+
+        $user = new User([
+            'role' => $request->get('role'),
+            'name' => $request->get('name'),
+            'username' => $request->get('username'),
+            'password' => bcrypt($request->get('password')),
+        ]);
+        $user->save();
+        return redirect('/users')->with('success', 'User saved!');
     }
 
     /**
