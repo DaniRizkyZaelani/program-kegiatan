@@ -1,6 +1,6 @@
 ## Requirements
-    Laravel >= 5.3
-    PHP >= 5.6.4
+    Laravel >= 9.0
+    PHP >= 8.2
 
 ## Installation
     cp .env.example .env
