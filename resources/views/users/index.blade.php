@@ -31,7 +31,7 @@
                     <th>{{ $value->password }}</th>
                     <th>
                         <a href="{{ route('users') }}/{{ $value->id }}/edit">Edit</a> |
-                        <a href="javascript:void(0)" class="btn-delete">Hapus</a>
+                        <a href="javascript:void(0)" data-id="{{ $value->id }}" class="btn-delete">Hapus</a>
                     </th>
                 </tr>
             @endforeach
@@ -44,7 +44,7 @@
     <script>
         $(document).ready(function() {
             $('.btn-delete').on('click', function(e) {
-                console.log('test');
+                var id = $(this).data('id');
                 e.preventDefault();
                 Swal.fire({
                     title: 'Apakah anda yakin?',
@@ -63,7 +63,7 @@
                         ).then((result) => {
                             $.ajax({
                                 type: "delete",
-                                url: "{{ route('users.destroy', $value->id) }}",
+                                url: "{{ route('users') }}/" + id + "/delete",
                                 data: {
                                     _token: "{{ csrf_token() }}"
                                 },
