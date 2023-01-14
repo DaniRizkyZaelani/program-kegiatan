@@ -3,6 +3,8 @@
     PHP >= 8.2
 
 ## Installation
+    git clone https://github.com/dirhamtriyadi/program-kegiatan.git
+    cd program-kegiatan
     cp .env.example .env
     composer i
     php artisan key:generate
