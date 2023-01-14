@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Program Kegiatan</title>
+    <title>Document</title>
 </head>
 <body>
     <a href="">Tambah</a>
@@ -15,7 +15,7 @@
                 <th>Nama Program</th>
                 <th>Bidang</th>
                 <th>Tanggal</th>
-                <th>Pengeluaran</th>
+                <th>Anggaran</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +25,7 @@
                     <th>{{ $value->nama_program }}</th>
                     <th>{{ $value->bidang }}</th>
                     <th>{{ $value->tanggal }}</th>
-                    <th>{{ $value->pengeluaran }}</th>
+                    <th>{{ $value->anggaran }}</th>
                     <th>edit|hapus</th>
                 </tr>
             @endforeach
