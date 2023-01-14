@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="">Tambah</a>
+    <a href="{{route('prokeg.create')}}">Tambah</a>
     <table>
         <thead>
             <tr>
@@ -21,12 +21,12 @@
         <tbody>
             @foreach ($prokeg as $item => $value)
                 <tr>
-                    <th>{{ $item + 1 }}</th>
-                    <th>{{ $value->nama_program }}</th>
-                    <th>{{ $value->bidang }}</th>
-                    <th>{{ $value->tanggal }}</th>
-                    <th>{{ $value->anggaran }}</th>
-                    <th>edit|hapus</th>
+                    <td>{{ $item + 1 }}</td>
+                    <td>{{ $value->nama_program }}</td>
+                    <td>{{ $value->bidang }}</td>
+                    <td>{{ $value->tanggal }}</td>
+                    <td>{{ $value->anggaran }}</td>
+                    <td>edit|hapus</td>
                 </tr>
             @endforeach
         </tbody>

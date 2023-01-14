@@ -14,7 +14,11 @@
         <input type="text" name="nama_program" placeholder="Nama Program">
         <label for="bidang">Bidang</label>
         <input type="text" name="bidang" placeholder="Bidang Studi">
-        <label for=""></label>
+        <label for="user_id">Penanggung Jawab</label>
+        <select name="user_id" id="user_id">
+            @foreach ($users as $item => $value)
+                <option value="{{ $value->id }}">{{ $value->nama }}</option>
+            @endforeach
         <label for="tanggal">Tanggal</label>
         <input type="date" name="tanggal">
         <label for="anggaran">Anggaran</label>

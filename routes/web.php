@@ -27,6 +27,7 @@ Route::get('/users/create', [UserController::class, 'create'])->name('users.crea
 //Program Kegiatan route
 Route::get('/prokeg', [ProgramKegiatanController::class, 'index'])->name('prokeg');
 Route::get('/prokeg/create', [ProgramKegiatanController::class, 'create'])->name('prokeg.create');
+Route::post('/prokeg', [ProgramKegiatanController::class, 'store'])->name('prokeg.store');
 // Login route
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/register', [RegisterController::class, 'index']);

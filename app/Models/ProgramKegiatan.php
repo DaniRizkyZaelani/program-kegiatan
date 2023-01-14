@@ -14,7 +14,6 @@ class ProgramKegiatan extends Model
     const UPDATED_AT = null;
 
     protected $fillable = [
-        'id',
         'nama_program',
         'bidang',
         'user_id',

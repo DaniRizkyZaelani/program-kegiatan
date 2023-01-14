@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProgramKegiatan;
+use App\Models\User;
 
 class ProgramKegiatanController extends Controller
 {
@@ -26,8 +27,9 @@ class ProgramKegiatanController extends Controller
      */
     public function create()
     {
-        //
-        return view('prokeg.create');
+        $users = User::all();
+
+        return view('prokeg.create', ['users' => $users]);
     }
 
     /**
@@ -39,6 +41,15 @@ class ProgramKegiatanController extends Controller
     public function store(Request $request)
     {
         //
+        ProgramKegiatan::updateOrCreate([
+            'id' => $request->id
+        ], [
+            'nama_program' => $request->nama_program,
+            'bidang' => $request->bidang,
+            'tanggal' => $request->tanggal,
+            'anggaran' => $request->anggaran
+        ]);
+        return redirect()->route('prokeg.index')->with('status', 'Data Berhasil Dimasuakan');
     }
 
     /**
