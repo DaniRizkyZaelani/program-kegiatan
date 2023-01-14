@@ -26,24 +26,27 @@
                                 @endforeach
                             @endif
                             <div class="mb-3">
-                                <label for="role" class="form-label">>Role</label>
+                                <label for="role" class="form-label">Role</label>
                                 <input type="text" id="role" name="role" placeholder="Role"
                                     class="form-control">
                             </div>
 
                             <div class="mb-3">
                                 <label for="name">Nama</label>
-                                <input type="text" id="name" name="name" placeholder="Nama">
+                                <input type="text" id="name" name="name" placeholder="Nama"
+                                class="form-control">
                             </div>
 
                             <div class="mb-3">
                                 <label for="username">Username</label>
-                                <input type="text" id="username" name="username" placeholder="Username">
+                                <input type="text" id="username" name="username" placeholder="Username"
+                                class="form-control">
                             </div>
 
                             <div class="mb-3">
                                 <label for="password">Password</label>
-                                <input type="password" id="password"name="password" placeholder="Password">
+                                <input type="password" id="password"name="password" placeholder="Password"
+                                class="form-control">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Simpan</button>
