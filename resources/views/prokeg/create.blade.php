@@ -34,6 +34,7 @@
                                     @foreach ($users as $item => $value)
                                         <option value="{{ $value->id }}">{{ $value->nama }}</option>
                                     @endforeach
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="tanggal">Tanggal</label>
