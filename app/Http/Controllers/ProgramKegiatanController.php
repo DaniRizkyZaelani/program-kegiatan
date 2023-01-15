@@ -73,6 +73,9 @@ class ProgramKegiatanController extends Controller
     public function edit($id)
     {
         //
+        $prokeg = ProgramKegiatan::find($id);
+        $users = User::all();
+        return view('prokeg.edit', ['prokeg' => $prokeg, 'users' => $users]);
     }
 
     /**
@@ -95,6 +98,7 @@ class ProgramKegiatanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+
     }
 }

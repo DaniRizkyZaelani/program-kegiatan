@@ -40,4 +40,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/prokeg', [ProgramKegiatanController::class, 'index'])->name('prokeg');
     Route::get('/prokeg/create', [ProgramKegiatanController::class, 'create',])->name('prokeg.create');
     Route::post('/prokeg/store', [ProgramKegiatanController::class, 'store'])->name('prokeg.store');
+    Route::get('/prokeg/{id}/edit', [UserController::class, 'edit'])->name('prokeg.edit');
+    Route::delete('/prokeg/{id}/delete', [UserController::class, 'destroy'])->name('prokeg.destroy');
 });
