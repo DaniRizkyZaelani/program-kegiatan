@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
 class RegisterController extends Controller
 {
     /**
@@ -21,9 +21,17 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'username' => 'required|max:255',
+            'role' => 'required',
+            'password' => 'required',
+        ]);
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        User::create($validatedData);
+        return redirect('/login')->with('success', 'Register Success');
     }
 
     /**
@@ -34,7 +42,6 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**

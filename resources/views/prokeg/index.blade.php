@@ -13,6 +13,12 @@
 
     <div class="container">
     <a href="{{route('prokeg.create')}}" class="btn btn-primary">Tambah</a>
+    <form action="/logout" method="post">
+              @csrf
+              <button type="submit" class="btn btn-primary">
+               Logout
+              </button>
+    </form>
     <div class="row">
         <table class="table">
             <thead>
