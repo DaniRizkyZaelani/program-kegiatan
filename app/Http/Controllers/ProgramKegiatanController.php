@@ -46,6 +46,7 @@ class ProgramKegiatanController extends Controller
         ], [
             'nama_program' => $request->nama_program,
             'bidang' => $request->bidang,
+            'user_id' => $request->user_id,
             'tanggal' => $request->tanggal,
             'anggaran' => $request->anggaran
         ]);
