@@ -50,7 +50,7 @@ class ProgramKegiatanController extends Controller
             'tanggal' => $request->tanggal,
             'anggaran' => $request->anggaran
         ]);
-        return redirect()->route('prokeg.index')->with('status', 'Data Berhasil Dimasuakan');
+        return redirect()->route('prokeg')->with('status', 'Data Berhasil Dimasuakan');
     }
 
     /**

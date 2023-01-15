@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('master')
+
+@section('content')
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,31 @@
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-    
-    <h1 class="text-center mb-4">Data User</h1>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <h1>Program kegiatan</h1>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-    <div class="container">
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Title</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
     <a href="{{route('prokeg.create')}}" class="btn btn-primary">Tambah</a>
     <form action="/logout" method="post">
               @csrf
@@ -45,7 +67,15 @@
         </tbody>
     </table>
     </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+        Footer
+    </div>
+    <!-- /.card-footer-->
 </div>
+<!-- /.card -->
 
-</body>
-</html>
+</section>
+<!-- /.content -->
+</div>
+@endsection

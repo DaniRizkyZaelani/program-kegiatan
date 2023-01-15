@@ -4,26 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Register</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('adminlte') }}/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="{{ asset('adminlte') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.min.css">
 </head>
-<body>
+    <body class="hold-transition register-page">
+        <div class="register-box">
+          <div class="register-logo">
+            <a href="#"><b>Kelompok</b> 3</a>
+          </div>
+
+          <div class="card">
+            <div class="card-body register-card-body">
+              <p class="login-box-msg">Register</p>
     <form action="/register" method="POST">
         @csrf
-    <label for="name">Name</label>
-    <input type="name" name="name" id="name" placeholder="name" autofocus required> <br>
-    <label for="username">Username</label>
-    <input type="username" name="username" id="name" placeholder="username" autofocus required> <br>
-    <label for="password">Password</label>
-    <label for="role">Role</label>
-    <select name="role" id="role">
-        <option value="admin">Admin</option>
-        <option value="dekan">Dekan</option>
-        <option value="user">mahasiswa</option>
-    </select><br>
-    <input type="password" name="password" id="password" placeholder="password" required><br>
-    <button type="submit">Register</button>
+   <div class="input-group mb-3">
+    <input type="name" class="form-control" name="name" id="name" placeholder="name" autofocus required> <br>
+    <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-user"></span>
+        </div>
+      </div>
+    </div>
+    <div class="input-group mb-3">
+    <input type="username" class="form-control" name="username" id="name" placeholder="username" autofocus required> <br>
+    <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-user"></span>
+        </div>
+      </div>
+    </div>
+    <div class="input-group mb-3">
+    <input type="password" class="form-control" name="password" id="password" placeholder="password" required><br>
+    <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fas fa-lock"></span>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Register</button>
     </form>
-    
-    
+
+    <a href="/login" class="text-center">Saya sudah punya akun</a>
+</div>
+<!-- jQuery -->
+<script src="{{ asset('adminlte') }}/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('adminlte') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('adminlte') }}/dist/js/adminlte.min.js"></script>
+
 </body>
 </html>
