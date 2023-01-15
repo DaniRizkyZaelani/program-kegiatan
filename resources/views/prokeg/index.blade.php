@@ -9,6 +9,7 @@
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
+    
     <h1 class="text-center mb-4">Data User</h1>
 
     <div class="container">

@@ -14,6 +14,13 @@
     </div>
 
     @endif
+    @if (session()->has('loginError'))
+
+    <div class="alert alert-danger" role="alert">
+      {{ session('loginError') }}
+    </div>
+
+    @endif
 <form action="/login" method="POST">
     @csrf
     <label for="password">Username</label>
