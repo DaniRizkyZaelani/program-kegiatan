@@ -18,7 +18,7 @@ class ProgramKegiatan extends Model
         'bidang',
         'user_id',
         'tanggal',
-        'pengeluaran'
+        'anggaran'
     ];
 
     public function user()
