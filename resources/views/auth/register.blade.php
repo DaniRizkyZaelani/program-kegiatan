@@ -25,7 +25,7 @@
     <form action="/register" method="POST">
         @csrf
    <div class="input-group mb-3">
-    <input type="name" class="form-control" name="name" id="name" placeholder="name" autofocus required> <br>
+    <input type="text" class="form-control" name="name" id="name" placeholder="name" autofocus required> <br>
     <div class="input-group-append">
         <div class="input-group-text">
           <span class="fas fa-user"></span>
@@ -33,13 +33,21 @@
       </div>
     </div>
     <div class="input-group mb-3">
-    <input type="username" class="form-control" name="username" id="name" placeholder="username" autofocus required> <br>
+    <input type="text" class="form-control" name="username" id="username" placeholder="username" autofocus required> <br>
     <div class="input-group-append">
         <div class="input-group-text">
           <span class="fas fa-user"></span>
         </div>
       </div>
     </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="role" id="role" placeholder="role" autofocus required value="mahasiswa" disabled> <br>
+        <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-users"></span>
+            </div>
+          </div>
+        </div>
     <div class="input-group mb-3">
     <input type="password" class="form-control" name="password" id="password" placeholder="password" required><br>
     <div class="input-group-append">
