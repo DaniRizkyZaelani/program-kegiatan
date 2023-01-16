@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah</a>
+                    {{-- <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah</a> --}}
                     <div class="row">
                         <table class="table">
                             <thead>
@@ -40,13 +40,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user => $value)
+                                @foreach ($bidang as $user => $value)
                                     <tr>
                                         <td>{{ $user + 1 }}</td>
-                                        <td>{{ $value->role }}</td>
                                         <td>{{ $value->name }}</td>
-                                        <td>{{ $value->username }}</td>
-                                        <td>{{ $value->password }}</td>
                                         <td>
                                             <a href="{{ route('users') }}/{{ $value->id }}/edit" class="btn btn-warning">Edit</a> |
                                             <a href="javascript:void(0)" data-id="{{ $value->id }}"
