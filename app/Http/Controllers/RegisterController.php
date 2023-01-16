@@ -23,16 +23,15 @@ class RegisterController extends Controller
      */
     public function create(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required|max:255',
-        //     'username' => 'required|max:255',
-        //     'role' => 'required',
-        //     'password' => 'required',
-        // ]);
-        // $validatedData['password'] = bcrypt($validatedData['password']);
-        // User::create($validatedData);
-        // return redirect('/login')->with('success', 'Register Success');
-        dd($request->all());
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'username' => 'required|max:255',
+            'role' => 'required',
+            'password' => 'required',
+        ]);
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        User::create($validatedData);
+        return redirect('/login')->with('success', 'Register Success');
     }
 
     /**
