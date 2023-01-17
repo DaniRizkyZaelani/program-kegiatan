@@ -32,7 +32,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // Protected route
 Route::group(['middleware' => ['auth']], function () {
     // Bidang route
-    Route::get('/bidang', [BidangController::class, 'create'])->name('bidang');
+    Route::get('/bidang', [BidangController::class, 'index'])->name('bidang');
 
     // Users route
     Route::get('/users', [UserController::class, 'index'])->name('users');
