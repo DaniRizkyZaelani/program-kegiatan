@@ -36,12 +36,6 @@
                 </div>
                 <div class="card-body">
     <a href="{{route('prokeg.create')}}" class="btn btn-primary">Tambah</a>
-    <form action="/logout" method="post">
-              @csrf
-              <button type="submit" class="btn btn-primary">
-               Logout
-              </button>
-    </form>
     <div class="row">
         <table class="table">
             <thead>
@@ -50,6 +44,7 @@
                 <th>Nama Program</th>
                 <th>Nama Pengaju</th>
                 <th>Bidang</th>
+                <th>Status</th>
                 <th>Tanggal Pengajuan</th>
                 <th>Tanggal Mulai</th>
                 <th>Tanggal Selesai</th>
@@ -64,6 +59,15 @@
                     <td>{{ $value->nama_program }}</td>
                     <td>{{ $value->user->name }}</td>
                     <td>{{ $value->bidang->name }}</td>
+                    <td>
+                        @if ($value->status == null)
+                            <span class="badge badge-warning">Menunggu</span>
+                        @elseif ($value->status == 1)
+                            <span class="badge badge-success">Disetujui</span>
+                        @elseif ($value->status == 2)
+                            <span class="badge badge-danger">Ditolak</span>
+                        @endif
+                    </td>
                     <td>{{ $value->tanggal_pengajuan }}</td>
                     <td>{{ $value->tanggal_mulai }}</td>
                     <td>{{ $value->tanggal_selesai }}</td>

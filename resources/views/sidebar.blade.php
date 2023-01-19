@@ -107,18 +107,19 @@
                             </a>
                         </li>
                     </ul>
-                    <li class="nav-header"></li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="far fa-solid fa-right-from-bracket"></i>
-                            <p>
-                                Logout
-                            </p>
-                        </a>
-                    </li>
+                <li class="nav-header"></li>
+                <li class="nav-item">
+                    <form action="/logout" method="post" class="nav-link">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </form>
+                </li>
                 </li>
             </ul>
-                <!-- /.sidebar-menu -->
+            <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
 </aside>
