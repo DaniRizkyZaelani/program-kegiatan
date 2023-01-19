@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('bidang_id');
             $table->foreign('bidang_id')->references('id')->on('bidang');
+            $table->boolean('status')->nullable();
             $table->date('tanggal_pengajuan');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
