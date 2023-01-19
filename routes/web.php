@@ -33,6 +33,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::group(['middleware' => ['auth']], function () {
     // Bidang route
     Route::get('/bidang', [BidangController::class, 'index'])->name('bidang');
+    Route::get('/bidang/create', [BidangController::class, 'create'])->name('bidang.create');
+    Route::post('/bidang/store', [BidangController::class, 'store'])->name('bidang.store');
+    Route::get('/bidang/{id}/edit', [BidangController::class, 'edit'])->name('bidang.edit');
+    Route::delete('/bidang/{id}/delete', [BidangController::class, 'destroy'])->name('bidang.destroy');
 
     // Users route
     Route::get('/users', [UserController::class, 'index'])->name('users');

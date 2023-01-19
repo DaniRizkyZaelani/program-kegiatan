@@ -50,7 +50,7 @@
                                         <td>
                                             <a href="{{ route('users') }}/{{ $value->id }}/edit" class="btn btn-warning">Edit</a> |
                                             <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                class="btn btn-danger">Hapus</a>
+                                                class="btn btn-danger btn-delete">Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -18,7 +18,6 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Title</h3>
-
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -26,7 +25,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    {{-- <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah</a> --}}
+                    <a href="{{ route('bidang.create') }}" class="btn btn-primary">Tambah</a>
                     <div class="row">
                         <table class="table">
                             <thead>
@@ -45,9 +44,9 @@
                                         <td>{{ $user + 1 }}</td>
                                         <td>{{ $value->name }}</td>
                                         <td>
-                                            <a href="{{ route('users') }}/{{ $value->id }}/edit" class="btn btn-warning">Edit</a> |
+                                            <a href="{{ route('bidang') }}/{{ $value->id }}/edit" class="btn btn-warning">Edit</a> |
                                             <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                class="btn btn-danger">Hapus</a>
+                                                class="btn btn-danger btn-delete">Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -94,7 +93,7 @@
                         ).then((result) => {
                             $.ajax({
                                 type: "delete",
-                                url: "{{ route('users') }}/" + id + "/delete",
+                                url: "{{ route('bidang') }}/" + id + "/delete",
                                 data: {
                                     _token: "{{ csrf_token() }}"
                                 },

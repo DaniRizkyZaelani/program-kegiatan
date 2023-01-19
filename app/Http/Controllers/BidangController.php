@@ -25,7 +25,7 @@ class BidangController extends Controller
      */
     public function create()
     {
-        //
+        return view('bidang.create');
     }
 
     /**
@@ -36,7 +36,18 @@ class BidangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+        ], [
+            'name.required' => 'Nama harus diisi',
+
+        ]);
+
+
+        Bidang::updateOrCreate([
+            'id' => $request->id
+        ], $validatedData);
+        return redirect('/bidang')->with('success', 'Bidang saved!');
     }
 
     /**
@@ -58,7 +69,8 @@ class BidangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bidang = Bidang::find($id);
+        return view('bidang.edit', ['bidang' => $bidang]);
     }
 
     /**
@@ -70,7 +82,7 @@ class BidangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -81,6 +93,7 @@ class BidangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Bidang::find($id)->delete();
+        return redirect('/bidang')->with('success', 'Bidang deleted!');
     }
 }

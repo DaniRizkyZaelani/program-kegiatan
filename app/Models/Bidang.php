@@ -9,14 +9,13 @@ class Bidang extends Model
 {
     use HasFactory;
 
-    protected $table = "bidang";
-    public $timestamp = false;
+    protected $table = 'bidang';
+    public $timestamps = false;
 
-    protected $fillable = [
-        'name'
-    ];
+    protected $fillable = ['name'];
 
-    public function programKegiatan() {
+    public function programKegiatan()
+    {
         return $this->hashMany(ProgramKegiatan::class);
     }
 }
