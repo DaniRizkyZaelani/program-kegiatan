@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ProgramKegiatan;
 use App\Models\User;
+use App\Models\Bidang;
 
 class ProgramKegiatanController extends Controller
 {
@@ -29,7 +30,9 @@ class ProgramKegiatanController extends Controller
     {
         $users = User::all();
 
-        return view('prokeg.create', ['users' => $users]);
+        $bidang = Bidang::all();
+
+        return view('prokeg.create', ['users' => $users, 'bidang' => $bidang]);
     }
 
     /**
@@ -45,9 +48,11 @@ class ProgramKegiatanController extends Controller
             'id' => $request->id
         ], [
             'nama_program' => $request->nama_program,
-            'bidang' => $request->bidang,
+            'bidang_id' => $request->bidang_id,
             'user_id' => $request->user_id,
-            'tanggal' => $request->tanggal,
+            'tanggal_pengajuan' => $request->tanggal_mulai, // contoh
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
             'anggaran' => $request->anggaran
         ]);
         return redirect()->route('prokeg')->with('status', 'Data Berhasil Dimasuakan');

@@ -15,9 +15,11 @@ class ProgramKegiatan extends Model
 
     protected $fillable = [
         'nama_program',
-        'bidang',
+        'bidang_id',
         'user_id',
-        'tanggal',
+        'tanggal_pengajuan',
+        'tanggal_mulai',
+        'tanggal_selesai',
         'anggaran'
     ];
 
