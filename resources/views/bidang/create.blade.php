@@ -6,7 +6,7 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <h1>Admin</h1>
+                    <h1>Input Bidang</h1>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -16,8 +16,15 @@
 
             <!-- Default box -->
             <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
                 <div class="card-body">
-
                     <a href="{{ route('bidang') }}" class="btn btn-primary mb-4">Kembali</a>
                     <form action="{{ route('bidang.store') }}" method="POST">
                         @csrf

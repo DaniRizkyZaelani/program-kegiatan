@@ -38,7 +38,7 @@
                 </li>
                 <li class="nav-header">Bidang</li>
                 <li class="nav-item">
-                    <a href="{{ route('bidang') }}" class="nav-link">
+                    <a href="{{ route('bidang') }}" class="nav-link {{ Request::is('bidang*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book-open"></i>
                         <p>
                             Bidang
@@ -59,7 +59,7 @@
                 <li class="nav-header">Untuk Penanggung Jawab</li>
 
                 <li class="nav-item has-treeview {{ Request::is('prokeg*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{ Request::is('prokeg*') ? 'active' : '' }}">
                         <i class="nav-icon far fa-calendar"></i>
                         <p>
                             Rencana

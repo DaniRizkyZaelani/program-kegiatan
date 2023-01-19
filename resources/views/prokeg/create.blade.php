@@ -13,11 +13,17 @@
 
         <!-- Main content -->
         <section class="content">
-
             <!-- Default box -->
             <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
                 <div class="card-body">
-
                     <a href="{{ route('prokeg') }}" class="btn btn-primary mb-4">Kembali</a>
                     <form action="{{ route('prokeg.store') }}" method="POST">
                         @csrf

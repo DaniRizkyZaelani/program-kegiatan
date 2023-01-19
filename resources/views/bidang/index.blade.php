@@ -6,7 +6,7 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <h1>Admin</h1>
+                    <h1>Bidang</h1>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
