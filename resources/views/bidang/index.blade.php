@@ -31,10 +31,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Role</th>
-                                    <th>Nama</th>
-                                    <th>Username</th>
-                                    <th>Password</th>
+                                    <th>Nama Bidang</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
