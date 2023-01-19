@@ -82,7 +82,7 @@ class BidangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
     }
 
     /**
@@ -93,7 +93,6 @@ class BidangController extends Controller
      */
     public function destroy($id)
     {
-        Bidang::find($id)->delete();
-        return redirect('/bidang')->with('success', 'Bidang deleted!');
+        Bidang::destroy($id);
     }
 }

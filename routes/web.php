@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::delete('/users/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
+
     //Program Kegiatan route
     Route::get('/prokeg', [ProgramKegiatanController::class, 'index'])->name('prokeg');
     Route::get('/prokeg/create', [ProgramKegiatanController::class, 'create',])->name('prokeg.create');

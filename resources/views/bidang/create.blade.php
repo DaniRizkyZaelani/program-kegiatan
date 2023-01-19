@@ -25,12 +25,17 @@
                             <label for="name">Nama Bidang</label>
                             <input type="text" name="name" placeholder="Nama Bidang" class="form-control">
                         </div>
-                        
+
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
                 </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    Footer
+                </div>
+                <!-- /.card-footer-->
             </div>
         </section>
     </div>

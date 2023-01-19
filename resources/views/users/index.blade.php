@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah</a>
+                    <a href="{{ route('users.create') }}" class="btn btn-primary mb-4">Tambah</a>
                     <div class="row">
                         <table class="table">
                             <thead>
@@ -48,7 +48,8 @@
                                         <td>{{ $value->username }}</td>
                                         <td>{{ $value->password }}</td>
                                         <td>
-                                            <a href="{{ route('users') }}/{{ $value->id }}/edit" class="btn btn-warning">Edit</a> |
+                                            <a href="{{ route('users') }}/{{ $value->id }}/edit"
+                                                class="btn btn-warning">Edit</a> |
                                             <a href="javascript:void(0)" data-id="{{ $value->id }}"
                                                 class="btn btn-danger btn-delete">Hapus</a>
                                         </td>
@@ -57,14 +58,13 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        Footer
-                    </div>
-                    <!-- /.card-footer-->
                 </div>
-                <!-- /.card -->
-
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    Footer
+                </div>
+                <!-- /.card-footer-->
+            <!-- /.card -->
         </section>
         <!-- /.content -->
     </div>

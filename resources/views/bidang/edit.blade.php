@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('bidang') }}" class="btn btn-primary">Kembali</a>
+                    <a href="{{ route('bidang') }}" class="btn btn-primary mb-4">Kembali</a>
                     <form action="{{ route('bidang.store') }}" method="post">
                         @csrf
                         @method('POST')
@@ -35,21 +35,19 @@
                         <div class="mb-3">
                             <label for="name">Nama Bidang</label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="name"
-                                value="{{ old('name', $bidang->name)  }}">
+                                value="{{ old('name', $bidang->name) }}">
                         </div>
-                        
+
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        Footer
-                    </div>
-                    <!-- /.card-footer-->
                 </div>
-                <!-- /.card -->
-
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    Footer
+                </div>
+                <!-- /.card-footer-->
         </section>
         <!-- /.content -->
     </div>

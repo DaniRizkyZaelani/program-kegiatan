@@ -16,7 +16,7 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-body">
-                        <a href="#">Kembali</a>
+                        <a href="{{ route('prokeg') }}" class="btn btn-primary mb-4">Kembali</a>
                         <form action="#" method="post">
                             @csrf
                             <div class="mb-3">
@@ -51,6 +51,11 @@
                             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
                         </script>
                     </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        Footer
+                    </div>
+                    <!-- /.card-footer-->
                 </div>
             </div>
         </div>

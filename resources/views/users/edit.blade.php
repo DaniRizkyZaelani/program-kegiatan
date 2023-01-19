@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('users') }}" class="btn btn-primary">Kembali</a>
+                    <a href="{{ route('users') }}" class="btn btn-primary mb-4">Kembali</a>
                     <form action="{{ route('users.store') }}" method="post">
                         @csrf
                         @method('POST')
@@ -56,14 +56,13 @@
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        Footer
-                    </div>
-                    <!-- /.card-footer-->
                 </div>
-                <!-- /.card -->
-
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    Footer
+                </div>
+                <!-- /.card-footer-->
+            <!-- /.card -->
         </section>
         <!-- /.content -->
     </div>
