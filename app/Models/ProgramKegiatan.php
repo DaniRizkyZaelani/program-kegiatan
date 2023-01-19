@@ -25,4 +25,9 @@ class ProgramKegiatan extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function bidang()
+    {
+        return $this->belongsTo(Bidang::class);
+    }
 }

@@ -48,9 +48,13 @@
             <tr>
                 <th>No</th>
                 <th>Nama Program</th>
+                <th>Nama Pengaju</th>
                 <th>Bidang</th>
-                <th>Tanggal</th>
+                <th>Tanggal Pengajuan</th>
+                <th>Tanggal Mulai</th>
+                <th>Tanggal Selesai</th>
                 <th>Anggaran</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -58,10 +62,13 @@
                 <tr>
                     <td>{{ $item + 1 }}</td>
                     <td>{{ $value->nama_program }}</td>
-                    <td>{{ $value->bidang }}</td>
-                    <td>{{ $value->tanggal }}</td>
+                    <td>{{ $value->user->name }}</td>
+                    <td>{{ $value->bidang->name }}</td>
+                    <td>{{ $value->tanggal_pengajuan }}</td>
+                    <td>{{ $value->tanggal_mulai }}</td>
+                    <td>{{ $value->tanggal_selesai }}</td>
                     <td>{{ $value->anggaran }}</td>
-                    <td>edit|hapus</td>
+                    <td>approve|lihat|edit|hapus</td>
                 </tr>
             @endforeach
         </tbody>
