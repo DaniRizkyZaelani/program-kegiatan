@@ -32,7 +32,7 @@ Route::post('/register', [RegisterController::class, 'create']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-// Protected route
+// Protected route Admin
 Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
     // Dashboard route
@@ -58,4 +58,26 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     Route::post('/prokeg/store', [ProgramKegiatanController::class, 'store'])->name('prokeg.store');
     Route::get('/prokeg/{id}/edit', [ProgramKegiatanController::class, 'edit'])->name('prokeg.edit');
     Route::delete('/prokeg/{id}/delete', [ProgramKegiatanController::class, 'destroy'])->name('prokeg.destroy');
+});
+
+// Protected route Mahasiswa
+Route::group(['middleware' => ['auth', 'isMahasiswa']], function () {
+
+    // Dashboard route
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    //Program Kegiatan route
+    Route::get('/prokeg', [ProgramKegiatanController::class, 'index'])->name('prokeg');
+    Route::get('/prokeg/create', [ProgramKegiatanController::class, 'create',])->name('prokeg.create');
+    Route::post('/prokeg/store', [ProgramKegiatanController::class, 'store'])->name('prokeg.store');
+});
+
+// Protected route Dekan
+Route::group(['middleware' => ['auth', 'isDekan']], function () {
+
+    // Dashboard route
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    //Program Kegiatan route
+    Route::get('/prokeg', [ProgramKegiatanController::class, 'index'])->name('prokeg');
 });
