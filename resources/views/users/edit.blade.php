@@ -34,8 +34,12 @@
 
                         <div class="mb-3">
                             <label for="role">Role</label>
-                            <input type="text" class="form-control" id="role" name="role" placeholder="Role"
-                                value="{{ $user->role }}">
+                            <select name="role" id="role" class="form-control">
+                                <option value="{{ $user->role }}">{{ ucfirst($user->role) }}</option>
+                                <option value="admin">Admin</option>
+                                <option value="dekan">Dekan</option>
+                                <option value="mahasiswa">Mahasiswa</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="name">Nama</label>

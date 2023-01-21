@@ -36,7 +36,12 @@
                         @endif
                         <div class="mb-3">
                             <label for="role" class="form-label">Role</label>
-                            <input type="text" id="role" name="role" placeholder="Role" class="form-control">
+                            <select name="role" id="role" class="form-control">
+                                <option selected>-- Pilih Role --</option>
+                                <option value="admin">Admin</option>
+                                <option value="dekan">Dekan</option>
+                                <option value="mahasiswa">Mahasiswa</option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
