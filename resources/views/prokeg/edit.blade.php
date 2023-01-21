@@ -21,23 +21,41 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="nama_program">Nama Program</label>
-                                <input type="text" class="form-control" name="nama_program"
+                                <input type="text" class="form-control" name="nama_program" value="{{ $prokeg->nama_program }}"
                                     placeholder="Nama Program">
                             </div>
                             <div class="mb-3">
-                                <label for="bidang">Bidang</label>
-                                <input type="text" class="form-control" name="bidang" placeholder="Bidang Studi">
+                                <label for="bidang_id">Bidang</label>
+                                <select name="bidang_id" id="bidang_id" class="form-control">
+                                    @foreach ($bidang as $item => $value)
+                                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                                
                             </div>
                             <div class="mb-3">
                                 <label for="user_id">Penanggung Jawab</label>
-                                <select name="user_id" id="user_id">
+                                <select name="user_id" id="user_id" class="form-control">
                                     @foreach ($users as $item => $value)
-                                        <option value="{{ $value->id }}">{{ $value->nama }}</option>
+                                    @if ($value->role == 'admin')
+                                        @continue
+                                    @endif
+                                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                    
                                     @endforeach
+                                </select>
                             </div>
                             <div class="mb-3">
-                                <label for="tanggal">Tanggal</label>
-                                <input type="date" class="form-control" name="tanggal">
+                                <label for="tanggal_pengajuan">Tanggal Pengajuan</label>
+                                <input type="date" class="form-control" name="tanggal_pengajuan">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tanggal_mulai">Tanggal Mulai</label>
+                                <input type="date" class="form-control" name="tanggal_mulai">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tanggal_selesai">Tanggal Selesai</label>
+                                <input type="date" class="form-control" name="tanggal_selesai">
                             </div>
                             <div class="mb-3">
                                 <label for="anggaran">Anggaran</label>

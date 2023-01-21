@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProgramKegiatanController;
+use App\Models\ProgramKegiatan;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,6 +56,6 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     Route::get('/prokeg', [ProgramKegiatanController::class, 'index'])->name('prokeg');
     Route::get('/prokeg/create', [ProgramKegiatanController::class, 'create',])->name('prokeg.create');
     Route::post('/prokeg/store', [ProgramKegiatanController::class, 'store'])->name('prokeg.store');
-    Route::get('/prokeg/{id}/edit', [UserController::class, 'edit'])->name('prokeg.edit');
+    Route::get('/prokeg/{id}/edit', [ProgramKegiatanController::class, 'edit'])->name('prokeg.edit');
     Route::delete('/prokeg/{id}/delete', [UserController::class, 'destroy'])->name('prokeg.destroy');
 });

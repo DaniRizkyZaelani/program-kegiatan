@@ -62,6 +62,7 @@
                                         <td>{{ $value->tanggal_mulai }}</td>
                                         <td>{{ $value->tanggal_selesai }}</td>
                                         <td>{{ $value->anggaran }}</td>
+                                        <td><a href="{{ route('prokeg') }}/{{ $value->id }}/edit">Edit</a></td>
                                         <td>approve|lihat|edit|hapus</td>
                                     </tr>
                                 @endforeach

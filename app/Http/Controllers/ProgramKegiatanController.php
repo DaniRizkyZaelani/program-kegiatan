@@ -78,9 +78,10 @@ class ProgramKegiatanController extends Controller
     public function edit($id)
     {
         //
+        $bidang = Bidang::all();
         $prokeg = ProgramKegiatan::find($id);
         $users = User::all();
-        return view('prokeg.edit', ['prokeg' => $prokeg, 'users' => $users]);
+        return view('prokeg.edit', ['prokeg' => $prokeg, 'users' => $users, 'bidang' => $bidang]);
     }
 
     /**
