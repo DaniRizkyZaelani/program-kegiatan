@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ProgramKegiatan;
 use App\Models\User;
 use App\Models\Bidang;
+use Carbon\Carbon;
 
 class ProgramKegiatanController extends Controller
 {
@@ -50,7 +51,7 @@ class ProgramKegiatanController extends Controller
             'nama_program' => $request->nama_program,
             'bidang_id' => $request->bidang_id,
             'user_id' => $request->user_id,
-            'tanggal_pengajuan' => $request->tanggal_mulai, // contoh
+            'tanggal_pengajuan' => Carbon::now(), // contoh
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
             'anggaran' => $request->anggaran
