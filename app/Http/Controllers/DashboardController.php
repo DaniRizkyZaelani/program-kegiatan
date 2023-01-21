@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProgramKegiatan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +15,16 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $user = User::count();
+        $rencana = ProgramKegiatan::all()->count();
+        $pending = ProgramKegiatan::where('status', null)->count();
+        $sukses = ProgramKegiatan::where('status', 1)->count();
+        return view('dashboard.index', [
+            'user' => $user,
+            'rencana' => $rencana,
+            'pending' => $pending,
+            'sukses' => $sukses,
+        ]);
     }
 
     /**
