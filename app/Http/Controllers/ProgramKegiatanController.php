@@ -44,8 +44,6 @@ class ProgramKegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $prokeg = ProgramKegiatan::find($request->id);
         if ($request->tanggal_pengajuan) {
             ProgramKegiatan::updateOrCreate(
                 [
@@ -55,7 +53,7 @@ class ProgramKegiatanController extends Controller
                     'nama_program' => $request->nama_program,
                     'bidang_id' => $request->bidang_id,
                     'user_id' => $request->user_id,
-                    'tanggal_pengajuan' => $request->tanggal_pengajuan, // contoh
+                    'tanggal_pengajuan' => $request->tanggal_pengajuan,
                     'tanggal_mulai' => $request->tanggal_mulai,
                     'tanggal_selesai' => $request->tanggal_selesai,
                     'anggaran' => $request->anggaran,
