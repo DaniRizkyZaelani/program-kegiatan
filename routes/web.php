@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -31,6 +32,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 // Protected route
 Route::group(['middleware' => ['auth']], function () {
+
+    // Dashboard route
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     // Bidang route
     Route::get('/bidang', [BidangController::class, 'index'])->name('bidang');
     Route::get('/bidang/create', [BidangController::class, 'create'])->name('bidang.create');
