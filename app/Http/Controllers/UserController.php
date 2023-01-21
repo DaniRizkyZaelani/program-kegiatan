@@ -39,12 +39,13 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'role' => 'required',
             'name' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:users,username,except,id',
             'password' => 'required',
         ], [
             'role.required' => 'Role harus diisi',
             'name.required' => 'Nama harus diisi',
             'username.required' => 'Username harus diisi',
+            'username.unique' => 'Username sudah ada',
             'password.required' => 'Password harus diisi',
         ]);
 
