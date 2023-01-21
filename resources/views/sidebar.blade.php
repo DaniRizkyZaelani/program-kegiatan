@@ -45,7 +45,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">Untuk Penanggung Jawab</li>
+                <li class="nav-header">Kegiatan</li>
 
                 <li class="nav-item has-treeview {{ Request::is('prokeg*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ Request::is('prokeg*') ? 'active' : '' }}">
@@ -59,7 +59,7 @@
                         <li class="nav-item">
                             <a href="{{ route('prokeg') }}" class="nav-link {{ Request::is('prokeg') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Kegiatan</p>
+                                <p>Daftar Kegiatan</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -71,7 +71,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-header">Untuk Dekan</li>
+                <li class="nav-header">Laporan</li>
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -86,7 +86,7 @@
                         <li class="nav-item">
                             <a href="penanggung-jawab.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Daftar Kegiatan</p>
+                                <p>Kegiatan Pending</p>
                             </a>
                         </li>
                         <li class="nav-item">
