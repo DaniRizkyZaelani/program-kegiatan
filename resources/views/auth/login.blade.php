@@ -18,18 +18,17 @@
     <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.min.css">
 </head>
 
-@if (session()->has('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-    </div>
-@endif
-@if (session()->has('loginError'))
-    <div class="alert alert-danger" role="alert">
-        {{ session('loginError') }}
-    </div>
-@endif
-
 <body class="hold-transition login-page">
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session()->has('loginError'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('loginError') }}
+        </div>
+    @endif
     <div class="login-box">
         <div class="login-logo">
             <a href="../../index2.html"><b>Kelompok</b> 3</a>
@@ -42,7 +41,8 @@
                 <form action="/login" method="POST">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="username" id="username" placeholder="username">
+                        <input type="text" class="form-control" name="username" id="username"
+                            placeholder="username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -50,7 +50,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" id="name" placeholder="password">
+                        <input type="password" class="form-control" name="password" id="name"
+                            placeholder="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

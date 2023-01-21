@@ -25,9 +25,15 @@ class RegisterController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'username' => 'required|unique:users,username',
+            'username' => 'required|unique:users',
             'role' => 'required',
             'password' => 'required',
+        ], [
+            'name.required' => 'Nama harus diisi',
+            'username.required' => 'Username harus diisi',
+            'username.unique' => 'Username sudah ada',
+            'role.required' => 'Role harus diisi',
+            'password.required' => 'Password harus diisi',
         ]);
         $validatedData['password'] = bcrypt($validatedData['password']);
         User::create($validatedData);

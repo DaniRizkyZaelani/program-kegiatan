@@ -17,6 +17,15 @@
 </head>
 
 <body class="hold-transition register-page">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="register-box">
         <div class="register-logo">
             <a href="#"><b>Kelompok</b> 3</a>
