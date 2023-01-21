@@ -43,6 +43,9 @@
                             <label for="user_id">Penanggung Jawab</label>
                             <select name="user_id" id="user_id" class="form-control">
                                 @foreach ($users as $item => $value)
+                                @if ($value->role == 'admin')
+                                    @continue
+                                @endif
                                     <option value="{{ $value->id }}">{{ $value->name }}</option>
                                 @endforeach
                             </select>

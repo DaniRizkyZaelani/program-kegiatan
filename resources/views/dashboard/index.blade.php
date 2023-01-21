@@ -18,7 +18,7 @@
                                 <p>User</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
+                                <i class="ion ion-person"></i>
                             </div>
                             <a href="{{ route('users') }}" class="small-box-footer">
                                 Selengkapnya
@@ -48,7 +48,7 @@
                                 <p>Kegiatan Pending</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
+                                <i class="ion ion-refresh"></i>
                             </div>
                             <a href="#" class="small-box-footer">
                                 Selengkapnya
@@ -63,7 +63,7 @@
                                 <p>Kegiatan Sukses</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
+                                <i class="ion ion-checkmark-round"></i>
                             </div>
                             <a href="#" class="small-box-footer">
                                 Selengkapnya
