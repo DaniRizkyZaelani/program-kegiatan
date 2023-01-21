@@ -57,5 +57,5 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     Route::get('/prokeg/create', [ProgramKegiatanController::class, 'create',])->name('prokeg.create');
     Route::post('/prokeg/store', [ProgramKegiatanController::class, 'store'])->name('prokeg.store');
     Route::get('/prokeg/{id}/edit', [ProgramKegiatanController::class, 'edit'])->name('prokeg.edit');
-    Route::delete('/prokeg/{id}/delete', [UserController::class, 'destroy'])->name('prokeg.destroy');
+    Route::delete('/prokeg/{id}/delete', [ProgramKegiatanController::class, 'destroy'])->name('prokeg.destroy');
 });

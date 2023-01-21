@@ -62,7 +62,10 @@
                                         <td>{{ $value->tanggal_mulai }}</td>
                                         <td>{{ $value->tanggal_selesai }}</td>
                                         <td>{{ $value->anggaran }}</td>
+
                                         <td><a href="{{ route('prokeg') }}/{{ $value->id }}/edit">Edit</a></td>
+                                        <td><a href="javascript:void(0)" data-id="{{ $value->id }}"
+                                                class="btn btn-danger btn-delete">Hapus</a></td>
                                         <td>approve|lihat|edit|hapus</td>
                                     </tr>
                                 @endforeach
@@ -80,3 +83,45 @@
         <!-- /.content -->
     </div>
 @endsection
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-delete').on('click', function(e) {
+                var id = $(this).data('id');
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Terhapus!',
+                            'Data berhasil dihapus.',
+                            'success'
+                        ).then((result) => {
+                            $.ajax({
+                                type: "delete",
+                                url: "{{ route('prokeg') }}/" + id + "/delete",
+                                data: {
+                                    _token: "{{ csrf_token() }}"
+                                },
+                                success: function(response) {
+                                    location.reload();
+                                }
+                            });
+                        })
+                    }
+                });
+            });
+        });
+    </script>
+@endpush
