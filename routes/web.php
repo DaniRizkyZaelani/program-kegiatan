@@ -25,10 +25,10 @@ use App\Models\ProgramKegiatan;
 //     return view('welcome');
 // });
 
-Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'create']);
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'create'])->name('register.create');
 
 // Protected route Admin, Mahasiswa, Dekan
 Route::group(['middleware' => ['auth', 'checkrole:admin,mahasiswa,dekan']], function () {
