@@ -87,9 +87,17 @@ class ProgramKegiatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showpending(Request $request)
     {
-        //
+        return view('prokeg.show-pending', [
+            'prokeg' => ProgramKegiatan::all(),
+        ]);
+    }
+    public function showsuccess(Request $request)
+    {
+        return view('prokeg.show-success', [
+            'prokeg' => ProgramKegiatan::all(),
+        ]);
     }
 
     /**

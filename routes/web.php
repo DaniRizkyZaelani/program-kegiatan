@@ -77,4 +77,6 @@ Route::group(['middleware' => ['auth', 'checkrole:admin']], function () {
     //Program Kegiatan route
     Route::get('/prokeg/{id}/edit', [ProgramKegiatanController::class, 'edit'])->name('prokeg.edit');
     Route::delete('/prokeg/{id}/delete', [ProgramKegiatanController::class, 'destroy'])->name('prokeg.destroy');
+    Route::get('/prokeg/showpending', [ProgramKegiatanController::class, 'showpending'])->name('prokeg.showpending');
+    Route::get('/prokeg/showsuccess', [ProgramKegiatanController::class, 'showsuccess'])->name('prokeg.showsuccess');
 });
