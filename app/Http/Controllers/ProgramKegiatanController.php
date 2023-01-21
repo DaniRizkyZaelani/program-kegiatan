@@ -133,6 +133,6 @@ class ProgramKegiatanController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
+        ProgramKegiatan::destroy($id);
     }
 }
