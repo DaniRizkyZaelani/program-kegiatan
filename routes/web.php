@@ -31,7 +31,7 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // Protected route
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
     // Dashboard route
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

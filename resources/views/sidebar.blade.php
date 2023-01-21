@@ -45,17 +45,6 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">MANAGE SYSTEM</li>
-
-                <li class="nav-item">
-                    <a href="{{ route('users') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            Users
-                        </p>
-                    </a>
-                </li>
-
                 <li class="nav-header">Untuk Penanggung Jawab</li>
 
                 <li class="nav-item has-treeview {{ Request::is('prokeg*') ? 'menu-open' : '' }}">
@@ -107,6 +96,19 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+
+                <li class="nav-header">MANAGE SYSTEM</li>
+
+                <li class="nav-item">
+                    <a href="{{ route('users') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Users
+                        </p>
+                    </a>
+                </li>
+
                 <li class="nav-header"></li>
                 <li class="nav-item">
                     <form action="/logout" method="post" class="nav-link">
