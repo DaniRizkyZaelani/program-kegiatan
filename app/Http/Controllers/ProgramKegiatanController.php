@@ -45,18 +45,42 @@ class ProgramKegiatanController extends Controller
     public function store(Request $request)
     {
         //
-        ProgramKegiatan::updateOrCreate([
-            'id' => $request->id
-        ], [
-            'nama_program' => $request->nama_program,
-            'bidang_id' => $request->bidang_id,
-            'user_id' => $request->user_id,
-            'tanggal_pengajuan' => Carbon::now(), // contoh
-            'tanggal_mulai' => $request->tanggal_mulai,
-            'tanggal_selesai' => $request->tanggal_selesai,
-            'anggaran' => $request->anggaran
-        ]);
-        return redirect()->route('prokeg')->with('status', 'Data Berhasil Dimasuakan');
+        $prokeg = ProgramKegiatan::find($request->id);
+        if ($request->tanggal_pengajuan) {
+            ProgramKegiatan::updateOrCreate(
+                [
+                    'id' => $request->id,
+                ],
+                [
+                    'nama_program' => $request->nama_program,
+                    'bidang_id' => $request->bidang_id,
+                    'user_id' => $request->user_id,
+                    'tanggal_pengajuan' => $request->tanggal_pengajuan, // contoh
+                    'tanggal_mulai' => $request->tanggal_mulai,
+                    'tanggal_selesai' => $request->tanggal_selesai,
+                    'anggaran' => $request->anggaran,
+                ]
+            );
+        } else {
+            ProgramKegiatan::updateOrCreate(
+                [
+                    'id' => $request->id,
+                ],
+                [
+                    'nama_program' => $request->nama_program,
+                    'bidang_id' => $request->bidang_id,
+                    'user_id' => $request->user_id,
+                    'tanggal_pengajuan' => Carbon::now(),
+                    'tanggal_mulai' => $request->tanggal_mulai,
+                    'tanggal_selesai' => $request->tanggal_selesai,
+                    'anggaran' => $request->anggaran,
+                ]
+            );
+        }
+
+        return redirect()
+            ->route('prokeg')
+            ->with('status', 'Data Berhasil Dimasuakan');
     }
 
     /**
@@ -82,7 +106,11 @@ class ProgramKegiatanController extends Controller
         $bidang = Bidang::all();
         $prokeg = ProgramKegiatan::find($id);
         $users = User::all();
-        return view('prokeg.edit', ['prokeg' => $prokeg, 'users' => $users, 'bidang' => $bidang]);
+        return view('prokeg.edit', [
+            'prokeg' => $prokeg,
+            'users' => $users,
+            'bidang' => $bidang,
+        ]);
     }
 
     /**
@@ -106,6 +134,5 @@ class ProgramKegiatanController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-
     }
 }

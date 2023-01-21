@@ -17,8 +17,9 @@
                 <div class="card">
                     <div class="card-body">
                         <a href="{{ route('prokeg') }}" class="btn btn-primary mb-4">Kembali</a>
-                        <form action="#" method="post">
+                        <form action="{{ route('prokeg.store') }}" method="post">
                             @csrf
+                            <input type="hidden" name="id" value="{{ $prokeg->id }}">
                             <div class="mb-3">
                                 <label for="nama_program">Nama Program</label>
                                 <input type="text" class="form-control" name="nama_program" value="{{ $prokeg->nama_program }}"
@@ -46,20 +47,21 @@
                                 </select>
                             </div>
                             <div class="mb-3">
+            
                                 <label for="tanggal_pengajuan">Tanggal Pengajuan</label>
-                                <input type="date" class="form-control" name="tanggal_pengajuan">
+                                <input type="date" class="form-control" name="tanggal_pengajuan" value="{{ $prokeg->tanggal_pengajuan }}">
                             </div>
                             <div class="mb-3">
                                 <label for="tanggal_mulai">Tanggal Mulai</label>
-                                <input type="date" class="form-control" name="tanggal_mulai">
+                                <input type="date" class="form-control" name="tanggal_mulai" value="{{ $prokeg->tanggal_mulai }}">
                             </div>
                             <div class="mb-3">
                                 <label for="tanggal_selesai">Tanggal Selesai</label>
-                                <input type="date" class="form-control" name="tanggal_selesai">
+                                <input type="date" class="form-control" name="tanggal_selesai" value="{{ $prokeg->tanggal_selesai }}">
                             </div>
                             <div class="mb-3">
                                 <label for="anggaran">Anggaran</label>
-                                <input type="text" class="form-control" name="anggaran"
+                                <input type="text" class="form-control" name="anggaran" value="{{ $prokeg->anggaran }}"
                                     placeholder="Jumlah Anggaran">
                             </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
