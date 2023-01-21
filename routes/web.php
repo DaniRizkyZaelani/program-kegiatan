@@ -34,6 +34,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 // Protected route Admin, Mahasiswa, Dekan
 Route::group(['middleware' => ['auth', 'checkrole:admin,mahasiswa,dekan']], function () {
+
     // Dashboard route
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
