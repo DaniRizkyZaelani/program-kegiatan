@@ -45,17 +45,20 @@
                             <tbody>
                                 @foreach ($prokeg as $item => $value)
                                     <tr>
+                                            @if ($value->status == null)
+                                            @continue
+                                                <span class="badge badge-warning">Menuggu</span>
+                                            @elseif ($value->status == 2)
+                                            @continue
+                                                <span class="badge badge-danger">Ditolak</span>
+                                            @endif
                                         <td>{{ $item + 1 }}</td>
                                         <td>{{ $value->nama_program }}</td>
                                         <td>{{ $value->user->name }}</td>
                                         <td>{{ $value->bidang->name }}</td>
                                         <td>
-                                            @if ($value->status == null)
-                                                <span class="badge badge-warning">Menunggu</span>
-                                            @elseif ($value->status == 1)
+                                            @if ($value->status == 1)
                                                 <span class="badge badge-success">Disetujui</span>
-                                            @elseif ($value->status == 2)
-                                                <span class="badge badge-danger">Ditolak</span>
                                             @endif
                                         </td>
                                         <td>{{ $value->tanggal_pengajuan }}</td>

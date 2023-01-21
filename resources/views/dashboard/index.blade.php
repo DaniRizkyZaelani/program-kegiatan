@@ -50,7 +50,7 @@
                             <div class="icon">
                                 <i class="ion ion-refresh"></i>
                             </div>
-                            <a href="#" class="small-box-footer">
+                            <a href="{{ route('prokeg.showpending') }}" class="small-box-footer">
                                 Selengkapnya
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>
@@ -65,7 +65,7 @@
                             <div class="icon">
                                 <i class="ion ion-checkmark-round"></i>
                             </div>
-                            <a href="#" class="small-box-footer">
+                            <a href="{{ route('prokeg.showsuccess') }}" class="small-box-footer">
                                 Selengkapnya
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>
