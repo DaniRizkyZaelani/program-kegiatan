@@ -19,7 +19,7 @@ class ProgramKegiatanController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'mahasiswa') {
-            $prokeg = ProgramKegiatan::where('user_id', Auth::user()->id)->where('tanggal_pengajuan', 'ASC')->get();
+            $prokeg = ProgramKegiatan::where('user_id', Auth::user()->id)->get();
             return view('prokeg.index', ['prokeg' => $prokeg]);
         }
         $prokeg = ProgramKegiatan::all();
@@ -56,6 +56,7 @@ class ProgramKegiatanController extends Controller
     public function store(Request $request)
     {
         if ($request->tanggal_pengajuan) {
+            $prokeg = ProgramKegiatan::where('id', $request->id)->first();
             ProgramKegiatan::updateOrCreate(
                 [
                     'id' => $request->id,
@@ -63,7 +64,7 @@ class ProgramKegiatanController extends Controller
                 [
                     'nama_program' => $request->nama_program,
                     'bidang_id' => $request->bidang_id,
-                    'user_id' => Auth::user()->id,
+                    'user_id' => $prokeg->user_id,
                     'penanggung_jawab_id' => $request->penanggung_jawab_id,
                     'tanggal_pengajuan' => $request->tanggal_pengajuan,
                     'tanggal_mulai' => $request->tanggal_mulai,
