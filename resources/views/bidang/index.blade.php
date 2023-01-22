@@ -47,29 +47,31 @@
                         <a href="#" class="btn btn-primary">Export Excel</a>
                     </div>
                     <div class="row">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Bidang</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($bidang as $user => $value)
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td>{{ $user + 1 }}</td>
-                                        <td>{{ $value->name }}</td>
-                                        <td>
-                                            <a href="{{ route('bidang') }}/{{ $value->id }}/edit"
-                                                class="btn btn-warning">Edit</a> |
-                                            <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                class="btn btn-danger btn-delete">Hapus</a>
-                                        </td>
+                                        <th>No</th>
+                                        <th>Nama Bidang</th>
+                                        <th>Aksi</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($bidang as $user => $value)
+                                        <tr>
+                                            <td>{{ $user + 1 }}</td>
+                                            <td>{{ $value->name }}</td>
+                                            <td>
+                                                <a href="{{ route('bidang') }}/{{ $value->id }}/edit"
+                                                    class="btn btn-warning">Edit</a> |
+                                                <a href="javascript:void(0)" data-id="{{ $value->id }}"
+                                                    class="btn btn-danger btn-delete">Hapus</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
