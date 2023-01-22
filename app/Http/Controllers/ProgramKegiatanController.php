@@ -19,10 +19,10 @@ class ProgramKegiatanController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'mahasiswa') {
-            $prokeg = ProgramKegiatan::where('user_id', Auth::user()->id)->get();
+            $prokeg = ProgramKegiatan::where('user_id', Auth::user()->id)->orderBy('tanggal_pengajuan', 'asc')->get();
             return view('prokeg.index', ['prokeg' => $prokeg]);
         }
-        $prokeg = ProgramKegiatan::all();
+        $prokeg = ProgramKegiatan::orderBy('tanggal_pengajuan', 'asc')->get();
         return view('prokeg.index', ['prokeg' => $prokeg]);
     }
 
