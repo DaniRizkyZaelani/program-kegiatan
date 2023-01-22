@@ -1,21 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-</head>
+@section('content')
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <h1>Edit Prokeg</h1>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <div class="card">
-                    <div class="card-body">
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Title</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
                         <a href="{{ route('prokeg') }}" class="btn btn-primary mb-4">Kembali</a>
                         <form action="{{ route('prokeg.store') }}" method="post">
                             @csrf
@@ -64,22 +74,17 @@
                                 <input type="text" class="form-control" name="anggaran" value="{{ $prokeg->anggaran }}"
                                     placeholder="Jumlah Anggaran">
                             </div>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
                         </form>
-
-                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-                            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-                        </script>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                         Footer
                     </div>
                     <!-- /.card-footer-->
-                </div>
-            </div>
+            </section>
+            <!-- /.content -->
         </div>
-    </div>
-</body>
-
-</html>l
+    @endsection
