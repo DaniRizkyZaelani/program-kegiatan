@@ -11,9 +11,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                  @can('admin')
-                    
-                 
+
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-secondary">
                             <div class="inner">
@@ -29,7 +27,6 @@
                             </a>
                         </div>
                     </div>
-                     @endcan
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
