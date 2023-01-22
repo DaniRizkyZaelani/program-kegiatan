@@ -69,7 +69,6 @@
                                         <td><a href="{{ route('prokeg') }}/{{ $value->id }}/edit" class="btn btn-warning">Edit</a></td>
                                         <td><a href="javascript:void(0)" data-id="{{ $value->id }}"
                                                 class="btn btn-danger btn-delete">Hapus</a></td>
-                                        <td>approve|lihat|edit|hapus</td>
                                     </tr>
                                 @endforeach
                             </tbody>

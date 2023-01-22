@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('adminlte') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.min.css">
+    <!-- css -->
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="hold-transition login-page">
@@ -29,47 +31,47 @@
             {{ session('loginError') }}
         </div>
     @endif
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="../../index2.html"><b>Kelompok</b> 3</a>
-        </div>
-        <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-body login-card-body">
-                <p class="login-box-msg">Login </p>
+    <div class="container-fluid">
+		<div class="row ">
+			<!-- IMAGE CONTAINER BEGIN -->
+			<div class="col-lg-6 col-md-6 d-none d-md-block infinity-image-container"></div>
+			<!-- IMAGE CONTAINER END -->
 
-                <form action="/login" method="POST">
+			<!-- FORM CONTAINER BEGIN -->
+			<div class="col-lg-6 col-md-6 infinity-form-container">
+				<div class="col-lg-9 col-md-12 col-sm-9 col-xs-12 infinity-form">
+					<!-- Company Logo -->
+					<div class="text-center mb-3 mt-5">
+						<img src="/image/logo1.png" width="150px">
+					</div>
+					<div class="text-center mb-4">
+			      <h4>Login</h4>
+			    </div>
+
+                <form class="px-3" action="/login" method="POST">
                     @csrf
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="username" id="username"
-                            placeholder="username">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" id="name"
-                            placeholder="password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
+                    <div class="form-input">
+                        <span><i class="fa fa-envelope"></i></span>
+                        <input type="text" name="username" id="username" placeholder="username" tabindex="10"required>
                     </div>
 
-                    <input type="submit" name="submit" class="btn btn-primary btn-block" value="Login"></input>
+                    <div class="form-input">
+                        <span><i class="fa fa-lock"></i></span>
+                        <input type="password" name="password" id="password" placeholder="password" tabindex="10"required>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" name="submit" class="btn btn-block" value="Login">Login</button>
+                    <div class="text-center mb-5 text-white">Belum punya akun?
+                        <a class="register-link" href="/register">Register disini</a>
+                 </div>
                 </form>
-
-                <p class="mb-0">
-                    <a href="/register" class="text-center">Register</a>
-                </p>
             </div>
-            <!-- /.login-card-body -->
         </div>
+        <!-- FORM CONTAINER END -->
     </div>
-    <!-- /.login-box -->
+</div>
+
 
     <!-- jQuery -->
     <script src="{{ asset('adminlte') }}/plugins/jquery/jquery.min.js"></script>
@@ -77,6 +79,7 @@
     <script src="{{ asset('adminlte') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('adminlte') }}/dist/js/adminlte.min.js"></script>
+    <!-- css -->
 
 </body>
 
