@@ -91,9 +91,12 @@
                                             <a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
                                                 class="btn btn-warning">Edit</a> |
                                             <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                class="btn btn-danger btn-delete">Hapus</a> |
-                                            <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                class="btn btn-primary btn-approve">Approvement</a>
+                                                class="btn btn-danger btn-delete">Hapus</a>
+                                            @if (Auth::user()->role == 'dekan')
+                                            |
+                                                <a href="javascript:void(0)" data-id="{{ $value->id }}"
+                                                    class="btn btn-primary btn-approve">Approvement</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
