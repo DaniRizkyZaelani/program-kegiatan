@@ -20,57 +20,61 @@
     <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body class="hold-transition login-page">
-    @if (session()->has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
-    @if (session()->has('loginError'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('loginError') }}
-        </div>
-    @endif
+<body>
+
     <div class="container-fluid">
-		<div class="row ">
-			<!-- IMAGE CONTAINER BEGIN -->
-			<div class="col-lg-6 col-md-6 d-none d-md-block infinity-image-container"></div>
-			<!-- IMAGE CONTAINER END -->
+        <div class="row ">
+            <!-- IMAGE CONTAINER BEGIN -->
+            <div class="col-lg-6 col-md-6 d-none d-md-block infinity-image-container"></div>
+            <!-- IMAGE CONTAINER END -->
 
-			<!-- FORM CONTAINER BEGIN -->
-			<div class="col-lg-6 col-md-6 infinity-form-container">
-				<div class="col-lg-9 col-md-12 col-sm-9 col-xs-12 infinity-form">
-					<!-- Company Logo -->
-					<div class="text-center mb-3 mt-5">
-						<img src="/image/logo1.png" width="150px">
-					</div>
-					<div class="text-center mb-4">
-			      <h4>Login</h4>
-			    </div>
+            <!-- FORM CONTAINER BEGIN -->
+            <div class="col-lg-6 col-md-6 infinity-form-container">
 
-                <form class="px-3" action="/login" method="POST">
-                    @csrf
-                    <div class="form-input">
-                        <span><i class="fa fa-envelope"></i></span>
-                        <input type="text" name="username" id="username" placeholder="username" tabindex="10"required>
+                <div class="col-lg-9 col-md-12 col-sm-9 col-xs-12 infinity-form">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success text-center"  role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if (session()->has('loginError'))
+                        <div class="alert alert-danger text-center" role="alert">
+                            {{ session('loginError') }}
+                        </div>
+                    @endif
+                    <!-- Company Logo -->
+                    <div class="text-center mb-3 mt-5">
+                        <img src="/image/logo1.png" width="150px">
+                    </div>
+                    <div class="text-center mb-4">
+                        <h4>Login</h4>
                     </div>
 
-                    <div class="form-input">
-                        <span><i class="fa fa-lock"></i></span>
-                        <input type="password" name="password" id="password" placeholder="password" tabindex="10"required>
-                    </div>
+                    <form class="px-3" action="/login" method="POST">
+                        @csrf
+                        <div class="form-input">
+                            <span><i class="fa fa-envelope"></i></span>
+                            <input type="text" name="username" id="username" placeholder="username"
+                                tabindex="10"required>
+                        </div>
 
-                    <div class="mb-3">
-                        <button type="submit" name="submit" class="btn btn-block" value="Login">Login</button>
-                    <div class="text-center mb-5 text-white">Belum punya akun?
-                        <a class="register-link" href="/register">Register disini</a>
-                 </div>
-                </form>
+                        <div class="form-input">
+                            <span><i class="fa fa-lock"></i></span>
+                            <input type="password" name="password" id="password" placeholder="password"
+                                tabindex="10"required>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" name="submit" class="btn btn-block" value="Login">Login</button>
+                            <div class="text-center mb-5 text-white">Belum punya akun?
+                                <a class="register-link" href="/register">Register disini</a>
+                            </div>
+                    </form>
+                </div>
             </div>
+            <!-- FORM CONTAINER END -->
         </div>
-        <!-- FORM CONTAINER END -->
     </div>
-</div>
 
 
     <!-- jQuery -->

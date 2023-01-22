@@ -19,15 +19,7 @@
 </head>
 
 <body>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
     <div class="container-fluid">
         <div class="row ">
             <!-- IMAGE CONTAINER BEGIN -->
@@ -37,6 +29,15 @@
             <!-- FORM CONTAINER BEGIN -->
             <div class="col-lg-6 col-md-6 infinity-form-container">
                 <div class="col-lg-9 col-md-12 col-sm-8 col-xs-12 infinity-form">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <!-- Company Logo -->
                     <div class="text-center mb-3 mt-5">
                         <img src="/image/logo1.png" width="150px">
@@ -62,7 +63,7 @@
                         <div class="form-input">
                             <span><i class="fa fa-users"></i></span>
                             <input type="text" name="role" id="role" placeholder="Role" tabindex="10"
-                            value="mahasiswa" readonly required>
+                                value="mahasiswa" readonly required>
                         </div>
 
                         <div class="form-input">
