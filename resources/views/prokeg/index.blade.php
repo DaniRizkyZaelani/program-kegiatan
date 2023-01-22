@@ -17,7 +17,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Title</h3>
+                    <h3 class="card-title">Daftar Kegiatan</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -86,7 +86,7 @@
                                             <td>{{ $value->tanggal_pengajuan }}</td>
                                             <td>{{ $value->tanggal_mulai }}</td>
                                             <td>{{ $value->tanggal_selesai }}</td>
-                                            <td>{{ $value->anggaran }}</td>
+                                            <td>Rp.{{ $value->anggaran }}</td>
 
                                             <td>
                                                 <a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
