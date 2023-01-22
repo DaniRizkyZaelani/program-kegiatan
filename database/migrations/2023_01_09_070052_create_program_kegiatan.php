@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nama_program');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('penanggung_jawab_id');
+            $table->foreign('penanggung_jawab_id')->references('id')->on('users');
             $table->unsignedBigInteger('bidang_id');
             $table->foreign('bidang_id')->references('id')->on('bidang');
             $table->boolean('status')->nullable();

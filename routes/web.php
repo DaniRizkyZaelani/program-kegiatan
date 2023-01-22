@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth', 'checkrole:admin,mahasiswa,dekan']], func
 
     //Program Kegiatan route
     Route::get('/prokeg', [ProgramKegiatanController::class, 'index'])->name('prokeg');
+    Route::get('/prokeg/cari', [ProgramKegiatanController::class, 'cari'])->name('prokeg.cari');
 });
 
 // Protected route Admin, Dekan
@@ -46,6 +47,7 @@ Route::group(['middleware' => ['auth', 'checkrole:admin,dekan']], function () {
 
     // Bidang route
     Route::get('/bidang', [BidangController::class, 'index'])->name('bidang');
+    Route::get('/bidang/cari', [BidangController::class, 'cari'])->name('bidang.cari');
     Route::get('/bidang/create', [BidangController::class, 'create'])->name('bidang.create');
     Route::post('/bidang/store', [BidangController::class, 'store'])->name('bidang.store');
     Route::get('/bidang/{id}/edit', [BidangController::class, 'edit'])->name('bidang.edit');

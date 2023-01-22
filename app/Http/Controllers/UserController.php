@@ -36,18 +36,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'role' => 'required',
-            'name' => 'required',
-            'username' => 'required|unique:users',
-            'password' => 'required',
-        ], [
-            'role.required' => 'Role harus diisi',
-            'name.required' => 'Nama harus diisi',
-            'username.required' => 'Username harus diisi',
-            'username.unique' => 'Username sudah ada',
-            'password.required' => 'Password harus diisi',
-        ]);
+        if ($request->id) {
+            $validatedData = $request->validate([
+                'role' => 'required',
+                'name' => 'required',
+                'username' => 'required',
+                'password' => 'required',
+            ], [
+                'role.required' => 'Role harus diisi',
+                'name.required' => 'Nama harus diisi',
+                'username.required' => 'Username harus diisi',
+                'password.required' => 'Password harus diisi',
+            ]);
+        } else {
+            $validatedData = $request->validate([
+                'role' => 'required',
+                'name' => 'required',
+                'username' => 'required|unique:users',
+                'password' => 'required',
+            ], [
+                'role.required' => 'Role harus diisi',
+                'name.required' => 'Nama harus diisi',
+                'username.required' => 'Username harus diisi',
+                'username.unique' => 'Username sudah ada',
+                'password.required' => 'Password harus diisi',
+            ]);
+        }
 
         $validatedData['password'] = bcrypt($validatedData['password']);
 

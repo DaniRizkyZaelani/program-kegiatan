@@ -32,20 +32,20 @@
                             <input type="text" name="nama_program" placeholder="Nama Program" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="bidang_id">Bidang</label>
-                            <select name="bidang_id" id="bidang_id" class="form-control">
-                                @foreach ($bidang as $item => $value)
+                            <label for="penanggung_jawab_id">Penanggung Jawab</label>
+                            <select name="penanggung_jawab_id" id="penanggung_jawab_id" class="form-control">
+                                @foreach ($users as $item => $value)
+                                @if ($value->role == 'admin')
+                                    @continue
+                                @endif
                                     <option value="{{ $value->id }}">{{ $value->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="user_id">Penanggung Jawab</label>
-                            <select name="user_id" id="user_id" class="form-control">
-                                @foreach ($users as $item => $value)
-                                @if ($value->role == 'admin')
-                                    @continue
-                                @endif
+                            <label for="bidang_id">Bidang</label>
+                            <select name="bidang_id" id="bidang_id" class="form-control">
+                                @foreach ($bidang as $item => $value)
                                     <option value="{{ $value->id }}">{{ $value->name }}</option>
                                 @endforeach
                             </select>

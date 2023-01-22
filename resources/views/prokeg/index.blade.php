@@ -25,7 +25,26 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('prokeg.create') }}" class="btn btn-primary mb-4">Tambah</a>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="{{ route('prokeg.create') }}" class="btn btn-primary mb-4">Tambah</a>
+                        </div>
+                        <div class="col-6">
+                            <form action="#" method="GET">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Cari Program Kegiatan"
+                                        name="cari" value="{{ old('cari') }}">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">Cari</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                        <a href="#" class="btn btn-warning mr-2">Export PDF</a>
+                        <a href="#" class="btn btn-primary">Export Excel</a>
+                    </div>
                     <div class="row">
                         <table class="table">
                             <thead>
@@ -33,6 +52,7 @@
                                     <th>No</th>
                                     <th>Nama Program</th>
                                     <th>Nama Pengaju</th>
+                                    <th>Nama Penanggung Jawab</th>
                                     <th>Bidang</th>
                                     <th>Status</th>
                                     <th>Tanggal Pengajuan</th>
@@ -48,6 +68,7 @@
                                         <td>{{ $item + 1 }}</td>
                                         <td>{{ $value->nama_program }}</td>
                                         <td>{{ $value->user->name }}</td>
+                                        <td>{{ $value->penanggung_jawab->name }}</td>
                                         <td>{{ $value->bidang->name }}</td>
                                         <td>
                                             @if ($value->status == null)
@@ -63,7 +84,8 @@
                                         <td>{{ $value->tanggal_selesai }}</td>
                                         <td>{{ $value->anggaran }}</td>
 
-                                        <td><a href="{{ route('prokeg') }}/{{ $value->id }}/edit" class="btn btn-warning">Edit</a></td>
+                                        <td><a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
+                                                class="btn btn-warning">Edit</a></td>
                                         <td><a href="javascript:void(0)" data-id="{{ $value->id }}"
                                                 class="btn btn-danger btn-delete">Hapus</a></td>
                                         <td>approve|lihat|edit|hapus</td>

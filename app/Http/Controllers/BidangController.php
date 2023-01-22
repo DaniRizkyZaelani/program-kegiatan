@@ -18,6 +18,13 @@ class BidangController extends Controller
         return view('bidang.index', ['bidang' => $bidang]);
     }
 
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+        $bidang = Bidang::where('name', 'like', "%" . $cari . "%")->get();
+        return view('bidang.index', ['bidang' => $bidang]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

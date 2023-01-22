@@ -25,7 +25,27 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('bidang.create') }}" class="btn btn-primary mb-4">Tambah</a>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="{{ route('bidang.create') }}" class="btn btn-primary mb-4">Tambah</a>
+                        </div>
+                        <div class="col-6">
+                            <form action="{{ route('bidang.cari') }}" method="GET">
+                                @csrf
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Cari Bidang"
+                                        name="cari" value="{{ old('cari') }}">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">Cari</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                        <a href="#" class="btn btn-warning mr-2">Export PDF</a>
+                        <a href="#" class="btn btn-primary">Export Excel</a>
+                    </div>
                     <div class="row">
                         <table class="table">
                             <thead>
@@ -57,7 +77,7 @@
                     Footer
                 </div>
                 <!-- /.card-footer-->
-            <!-- /.card -->
+                <!-- /.card -->
         </section>
         <!-- /.content -->
     </div>

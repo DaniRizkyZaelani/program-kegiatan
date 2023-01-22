@@ -17,6 +17,7 @@ class ProgramKegiatan extends Model
         'nama_program',
         'bidang_id',
         'user_id',
+        'penanggung_jawab_id',
         'tanggal_pengajuan',
         'tanggal_mulai',
         'tanggal_selesai',
@@ -24,6 +25,11 @@ class ProgramKegiatan extends Model
     ];
 
     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function penanggung_jawab()
     {
         return $this->belongsTo(User::class);
     }

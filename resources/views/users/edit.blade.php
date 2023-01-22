@@ -29,9 +29,13 @@
                     <a href="{{ route('users') }}" class="btn btn-primary mb-4">Kembali</a>
                     <form action="{{ route('users.store') }}" method="post">
                         @csrf
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        @endif
                         @method('POST')
                         <input type="hidden" id="id" name="id" value="{{ $user->id }}">
-
                         <div class="mb-3">
                             <label for="role">Role</label>
                             <select name="role" id="role" class="form-control">

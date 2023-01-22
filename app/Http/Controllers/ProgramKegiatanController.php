@@ -7,6 +7,7 @@ use App\Models\ProgramKegiatan;
 use App\Models\User;
 use App\Models\Bidang;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ProgramKegiatanController extends Controller
 {
@@ -17,8 +18,18 @@ class ProgramKegiatanController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()->role == 'mahasiswa') {
+            $prokeg = ProgramKegiatan::where('user_id', Auth::user()->id)->where('tanggal_pengajuan', 'ASC')->get();
+            return view('prokeg.index', ['prokeg' => $prokeg]);
+        }
         $prokeg = ProgramKegiatan::all();
+        return view('prokeg.index', ['prokeg' => $prokeg]);
+    }
+
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+        $prokeg = ProgramKegiatan::where('nama_program', 'like', "%" . $cari . "%")->get();
         return view('prokeg.index', ['prokeg' => $prokeg]);
     }
 
@@ -52,7 +63,8 @@ class ProgramKegiatanController extends Controller
                 [
                     'nama_program' => $request->nama_program,
                     'bidang_id' => $request->bidang_id,
-                    'user_id' => $request->user_id,
+                    'user_id' => Auth::user()->id,
+                    'penanggung_jawab_id' => $request->penanggung_jawab_id,
                     'tanggal_pengajuan' => $request->tanggal_pengajuan,
                     'tanggal_mulai' => $request->tanggal_mulai,
                     'tanggal_selesai' => $request->tanggal_selesai,
@@ -67,7 +79,8 @@ class ProgramKegiatanController extends Controller
                 [
                     'nama_program' => $request->nama_program,
                     'bidang_id' => $request->bidang_id,
-                    'user_id' => $request->user_id,
+                    'user_id' => Auth::user()->id,
+                    'penanggung_jawab_id' => $request->penanggung_jawab_id,
                     'tanggal_pengajuan' => Carbon::now(),
                     'tanggal_mulai' => $request->tanggal_mulai,
                     'tanggal_selesai' => $request->tanggal_selesai,
