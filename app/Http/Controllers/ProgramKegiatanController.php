@@ -101,6 +101,7 @@ class ProgramKegiatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function showpending(Request $request)
     {
         return view('prokeg.show-pending', [
@@ -112,6 +113,16 @@ class ProgramKegiatanController extends Controller
         return view('prokeg.show-success', [
             'prokeg' => ProgramKegiatan::all(),
         ]);
+    }
+
+    public function approve(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function reject(Request $request)
+    {
+        dd($request->all());
     }
 
     /**

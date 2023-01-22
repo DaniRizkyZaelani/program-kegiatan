@@ -29,9 +29,8 @@
                         <div class="col-6">
                             @if (Auth::user()->role == 'mahasiswa')
                                 <a href="{{ route('prokeg.create') }}" class="btn btn-primary mb-4">Tambah</a>
-                                
                             @endif
-                            
+
                         </div>
                         <div class="col-6">
                             <form action="#" method="GET">
@@ -88,11 +87,14 @@
                                         <td>{{ $value->tanggal_selesai }}</td>
                                         <td>{{ $value->anggaran }}</td>
 
-                                        <td><a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
-                                                class="btn btn-warning">Edit</a></td>
-                                        <td><a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                class="btn btn-danger btn-delete">Hapus</a></td>
-                                        <td>approve|lihat|edit|hapus</td>
+                                        <td>
+                                            <a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
+                                                class="btn btn-warning">Edit</a> |
+                                            <a href="javascript:void(0)" data-id="{{ $value->id }}"
+                                                class="btn btn-danger btn-delete">Hapus</a> |
+                                            <a href="javascript:void(0)" data-id="{{ $value->id }}"
+                                                class="btn btn-primary btn-approve">Approvement</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -116,38 +118,81 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
-            $('.btn-delete').on('click', function(e) {
-                var id = $(this).data('id');
-                e.preventDefault();
-                Swal.fire({
-                    title: 'Apakah anda yakin?',
-                    text: "Data yang dihapus tidak dapat dikembalikan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            'Terhapus!',
-                            'Data berhasil dihapus.',
-                            'success'
-                        ).then((result) => {
-                            $.ajax({
-                                type: "delete",
-                                url: "{{ route('prokeg') }}/" + id + "/delete",
-                                data: {
-                                    _token: "{{ csrf_token() }}"
-                                },
-                                success: function(response) {
-                                    location.reload();
-                                }
-                            });
-                        })
-                    }
-                });
+        $('.btn-delete').on('click', function(e) {
+            var id = $(this).data('id');
+            e.preventDefault();
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Terhapus!',
+                        'Data berhasil dihapus.',
+                        'success'
+                    ).then((result) => {
+                        $.ajax({
+                            type: "delete",
+                            url: "{{ route('prokeg') }}/" + id + "/delete",
+                            data: {
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                location.reload();
+                            }
+                        });
+                    })
+                }
             });
         });
+        $('.btn-approve').on('click', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Select field validation',
+                input: 'select',
+                inputOptions: {
+                    '1': 'Disetujui',
+                    '2': 'Ditolak'
+                },
+                inputPlaceholder: 'Select status',
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    return new Promise((resolve) => {
+                    if (value === '1') {
+                        $.ajax({
+                            type: "post",
+                            url: "{{ route('prokeg') }}/" + id + "/approved",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                status: value
+                            },
+                            success: function (response) {
+
+                            }
+                        });
+                    } else if (value === '2') {
+                        $.ajax({
+                            type: "post",
+                            url: "{{ route('prokeg') }}/" + id + "/rejected",
+                            data: {
+                                '_token': "{{ csrf_token() }}",
+                                'status': value
+                            },
+                            success: function (response) {
+
+                            }
+                        });
+                    }
+                    })
+                }
+            })
+        });
+    });
     </script>
 @endpush
