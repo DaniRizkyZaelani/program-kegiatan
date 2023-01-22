@@ -36,6 +36,8 @@
                         </p>
                     </a>
                 </li>
+                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'dekan'))
+                    
                 <li class="nav-header">Bidang</li>
                 <li class="nav-item">
                     <a href="{{ route('bidang') }}" class="nav-link {{ Request::is('bidang*') ? 'active' : '' }}">
@@ -45,6 +47,7 @@
                         </p>
                     </a>
                 </li>
+               @endif
                 <li class="nav-header">Kegiatan</li>
 
                 <li class="nav-item has-treeview {{ Request::is('prokeg*') ? 'menu-open' : '' }}">
@@ -62,14 +65,20 @@
                                 <p>Daftar Kegiatan</p>
                             </a>
                         </li>
+                        @if (Auth::user()->role == 'mahasiswa')
+                            
+                        
                         <li class="nav-item">
                             <a href="{{ route('prokeg.create') }}" class="nav-link {{ Request::is('prokeg/create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pendaftaran Kegiatan</p>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </li>
+                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'dekan')
+                    
 
                 <li class="nav-header">Laporan</li>
 
@@ -98,6 +107,11 @@
                     </ul>
                 </li>
 
+                 @endif
+                 @if(Auth::user()->role == 'admin')
+                     
+                 
+                 
                 <li class="nav-header">MANAGE SYSTEM</li>
 
                 <li class="nav-item">
@@ -108,6 +122,7 @@
                         </p>
                     </a>
                 </li>
+                @endif
 
                 <li class="nav-header"></li>
                 <li class="nav-item">

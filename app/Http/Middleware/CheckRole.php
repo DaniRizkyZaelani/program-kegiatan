@@ -20,6 +20,9 @@ class CheckRole
         if (Auth::check() && in_array(Auth::user()->role, $roles)) {
             return $next($request);
         }
-        return redirect('/login')->with('loginError', 'You are not allowed to access this page');
+        return redirect('/dashboard')->with(
+            'loginError',
+            'You are not allowed to access this page'
+        );
     }
 }

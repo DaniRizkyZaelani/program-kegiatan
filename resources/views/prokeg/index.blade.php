@@ -27,7 +27,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
-                            <a href="{{ route('prokeg.create') }}" class="btn btn-primary mb-4">Tambah</a>
+                            @if (Auth::user()->role == 'mahasiswa')
+                                <a href="{{ route('prokeg.create') }}" class="btn btn-primary mb-4">Tambah</a>
+                                
+                            @endif
+                            
                         </div>
                         <div class="col-6">
                             <form action="#" method="GET">
