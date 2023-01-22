@@ -117,12 +117,16 @@ class ProgramKegiatanController extends Controller
 
     public function approve(Request $request)
     {
-        dd($request->all());
+        $prokeg = ProgramKegiatan::find($request->id);
+        $prokeg->status = '1';
+        $prokeg->save();
     }
 
     public function reject(Request $request)
     {
-        dd($request->all());
+        $prokeg = ProgramKegiatan::find($request->id);
+        $prokeg->status = '2';
+        $prokeg->save();
     }
 
     /**

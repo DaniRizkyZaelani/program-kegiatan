@@ -54,8 +54,8 @@ Route::group(['middleware' => ['auth', 'checkrole:admin,dekan']], function () {
     Route::delete('/bidang/{id}/delete', [BidangController::class, 'destroy'])->name('bidang.destroy');
 
     // Kegiatan route
-    Route::post('/prokeg/{id}/approved', [ProgramKegiatanController::class, 'approve'])->name('kegiatan.approve');
-    Route::post('/prokeg/{id}/rejected', [ProgramKegiatanController::class, 'reject'])->name('kegiatan.reject');
+    Route::get('/prokeg/{id}/approved', [ProgramKegiatanController::class, 'approve'])->name('kegiatan.approve');
+    Route::get('/prokeg/{id}/rejected', [ProgramKegiatanController::class, 'reject'])->name('kegiatan.reject');
 });
 
 // Protected route Admin, Mahasiswa
