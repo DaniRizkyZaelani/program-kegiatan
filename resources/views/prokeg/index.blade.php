@@ -17,7 +17,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Title</h3>
+                    <h3 class="card-title">Daftar Kegiatan</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -49,56 +49,66 @@
                         <a href="#" class="btn btn-primary">Export Excel</a>
                     </div>
                     <div class="row">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Program</th>
-                                    <th>Nama Pengaju</th>
-                                    <th>Nama Penanggung Jawab</th>
-                                    <th>Bidang</th>
-                                    <th>Status</th>
-                                    <th>Tanggal Pengajuan</th>
-                                    <th>Tanggal Mulai</th>
-                                    <th>Tanggal Selesai</th>
-                                    <th>Anggaran</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($prokeg as $item => $value)
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td>{{ $item + 1 }}</td>
-                                        <td>{{ $value->nama_program }}</td>
-                                        <td>{{ $value->user->name }}</td>
-                                        <td>{{ $value->penanggung_jawab->name }}</td>
-                                        <td>{{ $value->bidang->name }}</td>
-                                        <td>
-                                            @if ($value->status == null)
-                                                <span class="badge badge-warning">Menunggu</span>
-                                            @elseif ($value->status == 1)
-                                                <span class="badge badge-success">Disetujui</span>
-                                            @elseif ($value->status == 2)
-                                                <span class="badge badge-danger">Ditolak</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $value->tanggal_pengajuan }}</td>
-                                        <td>{{ $value->tanggal_mulai }}</td>
-                                        <td>{{ $value->tanggal_selesai }}</td>
-                                        <td>{{ $value->anggaran }}</td>
-
-                                        <td>
-                                            <a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
-                                                class="btn btn-warning">Edit</a> |
-                                            <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                class="btn btn-danger btn-delete">Hapus</a> |
-                                            <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                class="btn btn-primary btn-approve">Approvement</a>
-                                        </td>
+                                        <th>No</th>
+                                        <th>Nama Program</th>
+                                        <th>Nama Pengaju</th>
+                                        <th>Nama Penanggung Jawab</th>
+                                        <th>Bidang</th>
+                                        <th>Status</th>
+                                        <th>Tanggal Pengajuan</th>
+                                        <th>Tanggal Mulai</th>
+                                        <th>Tanggal Selesai</th>
+                                        <th>Anggaran</th>
+                                        <th>Aksi</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($prokeg as $item => $value)
+                                        <tr>
+                                            <td>{{ $item + 1 }}</td>
+                                            <td>{{ $value->nama_program }}</td>
+                                            <td>{{ $value->user->name }}</td>
+                                            <td>{{ $value->penanggung_jawab->name }}</td>
+                                            <td>{{ $value->bidang->name }}</td>
+                                            <td>
+                                                @if ($value->status == null)
+                                                    <span class="badge badge-warning">Menunggu</span>
+                                                @elseif ($value->status == 1)
+                                                    <span class="badge badge-success">Disetujui</span>
+                                                @elseif ($value->status == 2)
+                                                    <span class="badge badge-danger">Ditolak</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ $value->tanggal_pengajuan }}</td>
+                                            <td>{{ $value->tanggal_mulai }}</td>
+                                            <td>{{ $value->tanggal_selesai }}</td>
+                                            <td>Rp.{{ $value->anggaran }}</td>
+
+                                            <td>
+                                                <a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
+                                                    class="btn btn-warning">Edit</a> |
+                                                <a href="javascript:void(0)" data-id="{{ $value->id }}"
+                                                    class="btn btn-danger btn-delete">Hapus</a>
+                                                @if($value->status == 1 || $value->status == 2)
+                                                    
+                                                @else
+                                                    @if (Auth::user()->role == 'dekan')
+                                                |
+                                                    <a href="javascript:void(0)" data-id="{{ $value->id }}"
+                                                        class="btn btn-primary btn-approve">Approvement</a>
+                                                    @endif
+                                                @endif
+                                                
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card-body -->

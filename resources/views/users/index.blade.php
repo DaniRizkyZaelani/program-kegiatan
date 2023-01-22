@@ -17,7 +17,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Title</h3>
+                    <h3 class="card-title">Daftar User</h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -47,35 +47,37 @@
                         <a href="#" class="btn btn-primary">Export Excel</a>
                     </div>
                     <div class="row">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Role</th>
-                                    <th>Nama</th>
-                                    <th>Username</th>
-                                    <th>Password</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user => $value)
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td>{{ $user + 1 }}</td>
-                                        <td>{{ $value->role }}</td>
-                                        <td>{{ $value->name }}</td>
-                                        <td>{{ $value->username }}</td>
-                                        <td>{{ $value->password }}</td>
-                                        <td>
-                                            <a href="{{ route('users') }}/{{ $value->id }}/edit"
-                                                class="btn btn-warning">Edit</a> |
-                                            <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                class="btn btn-danger btn-delete">Hapus</a>
-                                        </td>
+                                        <th>No</th>
+                                        <th>Role</th>
+                                        <th>Nama</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>Aksi</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($users as $user => $value)
+                                        <tr>
+                                            <td>{{ $user + 1 }}</td>
+                                            <td>{{ $value->role }}</td>
+                                            <td>{{ $value->name }}</td>
+                                            <td>{{ $value->username }}</td>
+                                            <td>{{ $value->password }}</td>
+                                            <td>
+                                                <a href="{{ route('users') }}/{{ $value->id }}/edit"
+                                                    class="btn btn-warning">Edit</a> |
+                                                <a href="javascript:void(0)" data-id="{{ $value->id }}"
+                                                    class="btn btn-danger btn-delete">Hapus</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
