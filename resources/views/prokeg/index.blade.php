@@ -297,7 +297,7 @@
                     }
                 });
             });
-            $('.modal-close').on('click', function () {
+            $('.modal').on('hidden.bs.modal', function () {
                 $('.table-detail tbody').empty();
             });
         });
