@@ -143,6 +143,9 @@
                                 <th>Bukti</th>
                             </tr>
                         </thead>
+                        <tbody>
+
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -295,7 +298,7 @@
                 });
             });
             $('.modal-close').on('click', function () {
-                $('.table-detail').empty();
+                $('.table-detail tbody').empty();
             });
         });
     </script>
