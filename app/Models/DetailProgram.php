@@ -15,9 +15,8 @@ class DetailProgram extends Model
     protected $fillable = [
         'program_kegiatan_id',
         'nama_kegiatan',
-        'tanggal_mulai',
-        'tanggal_selesai',
-        'anggaran',
-        'status'
+        'tanggal',
+        'pengeluaran',
+        'bukti',
     ];
 }

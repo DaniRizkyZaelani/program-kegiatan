@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('program_kegiatan_id');
             $table->foreign('program_kegiatan_id')->references('id')->on('program_kegiatan');
-            $table->date('tanggal');
             $table->string('nama_kegiatan');
+            $table->date('tanggal');
             $table->string('pengeluaran');
+            $table->string('bukti');
         });
     }
 
