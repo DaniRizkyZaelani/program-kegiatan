@@ -66,15 +66,10 @@
                                         <td>{{ $value->tanggal_selesai }}</td>
                                         <td>Rp.{{ $value->anggaran }}</td>
 
-                                        <td><a href="{{ route('prokeg') }}/{{ $value->id }}/edit" class="btn btn-warning">Edit</a></td>
-                                        <td><a href="javascript:void(0)" data-id="{{ $value->id }}"
-<<<<<<< HEAD
-                                                class="btn btn-danger btn-delete">Hapus</a></td>
-=======
-                                                class="btn btn-danger btn-delete">Hapus</a>
+                                        <td>
+                                            <a href="{{ route('prokeg') }}/{{ $value->id }}/edit" class="btn btn-warning">Edit</a>
+                                            @if($value->status == 1 || $value->status == 2)
 
-                                                @if($value->status == 1 || $value->status == 2)
-                                                    
                                                 @else
                                                     @if (Auth::user()->role == 'dekan')
                                                 |
@@ -82,10 +77,7 @@
                                                         class="btn btn-primary btn-approve">Approvement</a>
                                                     @endif
                                                 @endif
-                                            
                                         </td>
-                                        <td>approve|lihat|edit|hapus</td>
->>>>>>> 3e74f0d482ca15340c19f07ab69c8f2b51820a5e
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -207,6 +199,6 @@
                     }
                 })
             });
-    
+
     </script>
 @endpush

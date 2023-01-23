@@ -63,7 +63,7 @@
                                         <th>Tanggal Mulai</th>
                                         <th>Tanggal Selesai</th>
                                         <th>Anggaran</th>
-                                        <th>Aksi</th>
+                                        <th style="width: 500px">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -94,7 +94,7 @@
                                                 <a href="javascript:void(0)" data-id="{{ $value->id }}"
                                                     class="btn btn-danger btn-delete">Hapus</a>
                                                 @if($value->status == 1 || $value->status == 2)
-                                                    
+
                                                 @else
                                                     @if (Auth::user()->role == 'dekan')
                                                 |
@@ -102,7 +102,7 @@
                                                         class="btn btn-primary btn-approve">Approvement</a>
                                                     @endif
                                                 @endif
-                                                
+
                                             </td>
                                         </tr>
                                     @endforeach
