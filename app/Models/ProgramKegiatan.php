@@ -10,8 +10,7 @@ class ProgramKegiatan extends Model
     use HasFactory;
 
     protected $table = 'program_kegiatan';
-    const CREATED_AT = null;
-    const UPDATED_AT = null;
+    public $timestamps = false;
 
     protected $fillable = [
         'nama_program',
