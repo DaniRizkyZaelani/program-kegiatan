@@ -86,7 +86,9 @@
                                             <td>{{ $value->tanggal_pengajuan }}</td>
                                             <td>{{ $value->tanggal_mulai }}</td>
                                             <td>{{ $value->tanggal_selesai }}</td>
-                                            <td>Rp.{{ $value->anggaran }}</td>
+                                            <td>Rp.
+                                                @convert($value->anggaran)
+                                            </td>
 
                                             <td>
                                                 <a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
