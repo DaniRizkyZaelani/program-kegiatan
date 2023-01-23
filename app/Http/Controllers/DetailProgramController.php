@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DetailProgram;
 
 class DetailProgramController extends Controller
 {
@@ -11,9 +12,25 @@ class DetailProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        // $data = DetailProgram::where('program_kegiatan_id', $id)->get();
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'List Semua Detail Program',
+        //     'data' => $data
+        // ], 200);
+        // if ($request->ajax()) {
+        //     $data = DetailProgram::all();
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'List Semua Detail Program',
+        //         'data' => $data
+        //     ], 200);
+        // }
+
+        $data = DetailProgram::where('program_kegiatan_id', $id)->with('program_kegiatan')->get();
+        return response()->json($data, 200);
     }
 
     /**

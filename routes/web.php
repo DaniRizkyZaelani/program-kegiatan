@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProgramKegiatanController;
-use App\Models\ProgramKegiatan;
+use App\Http\Controllers\DetailProgramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +34,9 @@ Route::post('/register', [RegisterController::class, 'create'])->name(
     'register.create'
 );
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+Route::get('/detailprogram/{id}/view', [DetailProgramController::class, 'index'])->name('detailprogram');
 
 // Protected route Admin, Mahasiswa, Dekan
 Route::group(

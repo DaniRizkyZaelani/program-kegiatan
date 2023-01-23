@@ -102,7 +102,7 @@
                                                         class="btn btn-primary btn-approve">Approvement</a>
                                                     @endif
                                                 @endif
-
+                                                <a href="javascript:void(0)" data-id="{{ $value->id }}" class="btn btn-success btn-view">Lihat</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -120,11 +120,50 @@
         </section>
         <!-- /.content -->
     </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Modal Detail -->
+    <div class="modal" tabindex="-1" id="modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Detail Program</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-detail">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Nama Program</th>
+                                <th>Nama kegiatan</th>
+                                <th>Tanggal</th>
+                                <th>Pengeluaran</th>
+                                <th>Bukti</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary modal-close" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 @endsection
+
+@push('css')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@endpush
+
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
         integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
@@ -227,6 +266,36 @@
                         })
                     }
                 })
+            });
+            $('.btn-view').on('click', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#modal').modal('show');
+                $.ajax({
+                    type: "get",
+                    url: "/detailprogram/"+id+"/view",
+                    success: function (response) {
+                        console.log(response);
+                        var html = '';
+                        $.each(response, function (key, item) {
+                            html += '<tr>';
+                            html += '<td>' + (key+1) + '</td>';
+                            html += '<td>' + item.program_kegiatan.nama_program + '</td>';
+                            html += '<td>' + item.nama_kegiatan + '</td>';
+                            html += '<td>' + item.tanggal + '</td>';
+                            html += '<td>' + item.pengeluaran + '</td>';
+                            html += '<td>' + item.bukti + '</td>';
+                            html += '</tr>';
+                        });
+                        $('.table-detail').append(html);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $('.modal-close').on('click', function () {
+                $('.table-detail').empty();
             });
         });
     </script>

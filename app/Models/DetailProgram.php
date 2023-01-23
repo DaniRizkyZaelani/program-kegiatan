@@ -19,4 +19,9 @@ class DetailProgram extends Model
         'pengeluaran',
         'bukti',
     ];
+
+    public function program_kegiatan()
+    {
+        return $this->belongsTo(ProgramKegiatan::class);
+    }
 }
