@@ -144,7 +144,7 @@
                                     <th>Tanggal</th>
                                     <th>Pengeluaran</th>
                                     <th>Bukti</th>
-                                    <th>Aksi</th>
+                                    <th style="width: 100px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -214,9 +214,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
         integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
@@ -337,14 +337,17 @@
                                 '</td>';
 
                             html += '<td>' + item.nama_kegiatan + '</td>';
-                            html += '<td>' + item.tanggal + '</td>';
+                            html += '<td>' + moment().format() + '</td>';
                             html += '<td>' + item.pengeluaran + '</td>';
                             if (item.bukti.split('.').pop() == 'pdf') {
-                                html += '<td> <img src="/image/pdf.png" style="height: 300px;"> </td>';
-                            }else {
-                                html += '<td> <img src="/bukti/' + item.bukti + '" style="height: 300px;"> </td>';
+                                html += '<td>' + item.bukti + '</td>';
+                                // html += '<td> <img src="/image/pdf.png" style="height: 300px;"> </td>';
+                            } else {
+                                html += '<td> <img src="/bukti/' + item.bukti +
+                                    '" style="height: 300px;"> </td>';
                             }
-                            html += '<td><a href="/bukti/' + item.bukti + '" class="btn btn-primary">Download</a></td>';
+                            html += '<td><a href="/bukti/' + item.bukti +
+                                '" class="btn btn-primary">Download</a></td>';
                             html += '</tr>';
                         });
 
