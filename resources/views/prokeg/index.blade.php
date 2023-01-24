@@ -340,10 +340,11 @@
                             html += '<td>' + item.tanggal + '</td>';
                             html += '<td>' + item.pengeluaran + '</td>';
                             if (item.bukti.split('.').pop() == 'pdf') {
-                                return html += '<td><img src="/image/pdf.png" style="height: 300px;></td>';
+                                html += '<td> <img src="/image/pdf.png" style="height: 300px;"> </td>';
                             }else {
-                                return html += '<td> <img src="/bukti/' + item.bukti + '" style="height: 300px;"> </td>';
+                                html += '<td> <img src="/bukti/' + item.bukti + '" style="height: 300px;"> </td>';
                             }
+                            html += '<td><a href="/bukti/' + item.bukti + '" class="btn btn-primary">Download</a></td>';
                             html += '</tr>';
                         });
 
