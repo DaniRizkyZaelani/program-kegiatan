@@ -55,7 +55,7 @@ class DetailProgramController extends Controller
             'bukti.mimes' => 'Bukti harus berupa gambar dengan format jpeg, png, jpg, atau pdf',
         ]);
 
-        $bukti = $request->file('bukti')->getClientOriginalName();
+        $bukti = time(). '-' . $request->file('bukti')->getClientOriginalName();
         $request->file('bukti')->move(public_path('bukti'), $bukti);
 
         $data = DetailProgram::create([
