@@ -14,7 +14,9 @@ class DetailProgramController extends Controller
      */
     public function index($id)
     {
-        $data = DetailProgram::where('program_kegiatan_id', $id)->with('program_kegiatan')->get();
+        $data = DetailProgram::where('program_kegiatan_id', $id)
+            ->with('program_kegiatan')
+            ->get();
         return response()->json($data, 200);
     }
 
@@ -42,7 +44,7 @@ class DetailProgramController extends Controller
             'nama_kegiatan' => 'required',
             'tanggal' => 'required',
             'pengeluaran' => 'required',
-            'bukti' => 'required|file|mimes:jpeg,png,jpg,pdf',
+            'bukti' => 'required|file|image|mimes:jpeg,png,jpg',
         ], [
             'program_kegiatan_id.required' => 'Program Kegiatan tidak boleh kosong',
             'nama_kegiatan.required' => 'Nama Kegiatan tidak boleh kosong',
@@ -50,6 +52,7 @@ class DetailProgramController extends Controller
             'pengeluaran.required' => 'Pengeluaran tidak boleh kosong',
             'bukti.required' => 'Bukti tidak boleh kosong',
             'bukti.file' => 'Bukti harus berupa file',
+            'bukti.image' => 'Bukti harus berupa gambar',
             'bukti.mimes' => 'Bukti harus berupa gambar dengan format jpeg, png, atau jpg',
         ]);
 
@@ -64,7 +67,9 @@ class DetailProgramController extends Controller
             'bukti' => $bukti,
         ]);
 
-        return redirect()->route('prokeg')->with('success', 'Data berhasil ditambahkan');
+        return redirect()
+            ->route('prokeg')
+            ->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
