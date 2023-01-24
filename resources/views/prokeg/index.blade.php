@@ -339,8 +339,11 @@
                             html += '<td>' + item.nama_kegiatan + '</td>';
                             html += '<td>' + item.tanggal + '</td>';
                             html += '<td>' + item.pengeluaran + '</td>';
-                            html += '<td> <img src="/bukti/' + item.bukti + '"> </td>';
-
+                            if (item.bukti.split('.').pop() == 'pdf') {
+                                return html += '<td><img src="/image/pdf.png" style="height: 300px;></td>';
+                            }else {
+                                return html += '<td> <img src="/bukti/' + item.bukti + '" style="height: 300px;"> </td>';
+                            }
                             html += '</tr>';
                         });
 
