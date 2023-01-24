@@ -339,7 +339,7 @@
                             html += '<td>' + item.nama_kegiatan + '</td>';
                             html += '<td>' + item.tanggal + '</td>';
                             html += '<td>' + item.pengeluaran + '</td>';
-                            html += '<td> <img src="/bukti/' + item.bukti + '"> </td>';
+                            html += '<td> <img src="/bukti/' + item.bukti + '" style="width: 500px; height: 300px;"> </td>';
 
                             html += '</tr>';
                         });
