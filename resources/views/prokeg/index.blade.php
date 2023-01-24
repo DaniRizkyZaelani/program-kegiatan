@@ -83,9 +83,9 @@
                                                     <span class="badge badge-danger">Ditolak</span>
                                                 @endif
                                             </td>
-                                            <td>{{ $value->tanggal_pengajuan }}</td>
-                                            <td>{{ $value->tanggal_mulai }}</td>
-                                            <td>{{ $value->tanggal_selesai }}</td>
+                                            <td>@date($value->tanggal_pengajuan)</td>
+                                            <td>@date($value->tanggal_mulai)</td>
+                                            <td>@date($value->tanggal_selesai)</td>
                                             <td>Rp.
                                                 @convert($value->anggaran)
                                             </td>
