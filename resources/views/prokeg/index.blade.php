@@ -203,17 +203,64 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Edit -->
+    <div class="modal" tabindex="-1" id="modalEditDetail">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detail Program</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('detailprogram.store') }}" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        @csrf
+                        @method('POST')
+                        <input type="text" class="id" name="id">
+                        <div class="mb-3">
+                            <label for="nama_kegiatan"
+                                class="form-label @error('nama_kegiatan') is-invalid @enderror">Nama
+                                Kegiatan</label>
+                            <input type="text" class="form-control nama_kegiatan" name="nama_kegiatan">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal"
+                                class="form-label @error('tanggal') is-invalid @enderror">Tanggal</label>
+                            <input type="date" class="form-control tanggal" name="tanggal">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pengeluaran"
+                                class="form-label @error('pengeluaran') is-invalid @enderror">Pengeluaran</label>
+                            <input type="text" class="form-control pengeluaran" name="pengeluaran">
+                        </div>
+                        <div class="mb-3">
+                            <label for="bukti" class="form-label @error('bukti') is-invalid @enderror">Bukti</label>
+                            <input type="file" class="form-control bukti" name="bukti">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary modal-close"
+                            data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('css')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 @endpush
 
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
         integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
@@ -344,8 +391,10 @@
                                     '" style="height: 300px;"> </td>';
                             }
                             html += '<td><a href="/bukti/' + item.bukti +
-                                '" class="btn btn-primary">Download</a></td>';
-                            html += '<td><a href="javascript:void(0)" class="btn btn-warning">Edit</a></td>';
+                                '" class="btn btn-primary download">Download</a></td>';
+                            html +=
+                                '<td><a href="javascript:void(0)" class="btn btn-warning btn-edit-detail" data-id="' +
+                                item.id + '">Edit</a></td>';
                             html += '</tr>';
                         });
 
@@ -364,6 +413,25 @@
                 var id = $(this).data('id');
                 $('#modalInputDetail').modal('show');
                 $('#program_kegiatan_id').val(id);
+            });
+            $('.table-detail').on('click', '.btn-edit-detail', function() {
+                var id = $(this).data('id');
+                console.log(id);
+                $('#modalEditDetail').modal('show');
+                $.ajax({
+                    type: "get",
+                    url: "/detailprogram/" + id + "/edit",
+                    success: function(response) {
+                        console.log(response);
+                        $('.id').val(response.id);
+                        $('.nama_kegiatan').val(response.nama_kegiatan);
+                        $('.tanggal').val(response.tanggal);
+                        $('.pengeluaran').val(response.pengeluaran);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
             });
         });
     </script>

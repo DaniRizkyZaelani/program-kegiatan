@@ -90,7 +90,8 @@ class DetailProgramController extends Controller
      */
     public function edit($id)
     {
-        //
+        $detail = DetailProgram::find($id);
+        return response()->json($detail, 200);
     }
 
     /**
