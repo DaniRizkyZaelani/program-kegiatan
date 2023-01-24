@@ -14,9 +14,7 @@ class DetailProgramController extends Controller
      */
     public function index($id)
     {
-        $data = DetailProgram::where('program_kegiatan_id', $id)
-            ->with('program_kegiatan')
-            ->get();
+        $data = DetailProgram::where('program_kegiatan_id', $id)->with('program_kegiatan')->get();
         return response()->json($data, 200);
     }
 
@@ -38,37 +36,87 @@ class DetailProgramController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $validatedData = $request->validate([
-            'program_kegiatan_id' => 'required',
-            'nama_kegiatan' => 'required',
-            'tanggal' => 'required',
-            'pengeluaran' => 'required',
-            'bukti' => 'required|file|mimes:jpeg,png,jpg,pdf',
-        ], [
-            'program_kegiatan_id.required' => 'Program Kegiatan tidak boleh kosong',
-            'nama_kegiatan.required' => 'Nama Kegiatan tidak boleh kosong',
-            'tanggal.required' => 'Tanggal tidak boleh kosong',
-            'pengeluaran.required' => 'Pengeluaran tidak boleh kosong',
-            'bukti.required' => 'Bukti tidak boleh kosong',
-            'bukti.file' => 'Bukti harus berupa file',
-            'bukti.mimes' => 'Bukti harus berupa gambar dengan format jpeg, png, jpg, atau pdf',
-        ]);
+        if(!$request->id) {
+            $validatedData = $request->validate([
+                'program_kegiatan_id' => 'required',
+                'nama_kegiatan' => 'required',
+                'tanggal' => 'required',
+                'pengeluaran' => 'required',
+                'bukti' => 'required|file|mimes:jpeg,png,jpg,pdf',
+            ], [
+                'program_kegiatan_id.required' => 'Program Kegiatan tidak boleh kosong',
+                'nama_kegiatan.required' => 'Nama Kegiatan tidak boleh kosong',
+                'tanggal.required' => 'Tanggal tidak boleh kosong',
+                'pengeluaran.required' => 'Pengeluaran tidak boleh kosong',
+                'bukti.required' => 'Bukti tidak boleh kosong',
+                'bukti.file' => 'Bukti harus berupa file',
+                'bukti.mimes' => 'Bukti harus berupa gambar dengan format jpeg, png, jpg, atau pdf',
+            ]);
 
-        $bukti = time(). '-' . $request->file('bukti')->getClientOriginalName();
-        $request->file('bukti')->move(public_path('bukti'), $bukti);
+            $bukti = time(). '-' . $request->file('bukti')->getClientOriginalName();
+            $request->file('bukti')->move(public_path('bukti'), $bukti);
 
-        $data = DetailProgram::create([
-            'program_kegiatan_id' => $request->program_kegiatan_id,
-            'nama_kegiatan' => $request->nama_kegiatan,
-            'tanggal' => $request->tanggal,
-            'pengeluaran' => $request->pengeluaran,
-            'bukti' => $bukti,
-        ]);
+            $data = DetailProgram::create([
+                'program_kegiatan_id' => $request->program_kegiatan_id,
+                'nama_kegiatan' => $request->nama_kegiatan,
+                'tanggal' => $request->tanggal,
+                'pengeluaran' => $request->pengeluaran,
+                'bukti' => $bukti,
+            ]);
 
-        return redirect()
-            ->route('prokeg')
-            ->with('success', 'Data berhasil ditambahkan');
+            return redirect()->route('prokeg')->with('success', 'Data berhasil ditambahkan');
+        } else {
+            if(!$request->bukti) {
+                $validatedData = $request->validate([
+                    'nama_kegiatan' => 'required',
+                    'tanggal' => 'required',
+                    'pengeluaran' => 'required',
+                ], [
+                    'nama_kegiatan.required' => 'Nama Kegiatan tidak boleh kosong',
+                    'tanggal.required' => 'Tanggal tidak boleh kosong',
+                    'pengeluaran.required' => 'Pengeluaran tidak boleh kosong',
+                ]);
+
+                $data = DetailProgram::find($request->id)->update([
+                    'nama_kegiatan' => $request->nama_kegiatan,
+                    'tanggal' => $request->tanggal,
+                    'pengeluaran' => $request->pengeluaran,
+                ]);
+
+                return redirect()->route('prokeg')->with('success', 'Data berhasil diubah');
+            } else {
+                $oldBukti = DetailProgram::find($request->id)->bukti;
+                unlink(public_path('bukti/' . $oldBukti));
+
+                $validatedData = $request->validate([
+                    'nama_kegiatan' => 'required',
+                    'tanggal' => 'required',
+                    'pengeluaran' => 'required',
+                    'bukti' => 'required|file|mimes:jpeg,png,jpg,pdf',
+                ], [
+                    'nama_kegiatan.required' => 'Nama Kegiatan tidak boleh kosong',
+                    'tanggal.required' => 'Tanggal tidak boleh kosong',
+                    'pengeluaran.required' => 'Pengeluaran tidak boleh kosong',
+                    'bukti.required' => 'Bukti tidak boleh kosong',
+                    'bukti.file' => 'Bukti harus berupa file',
+                    'bukti.mimes' => 'Bukti harus berupa gambar dengan format jpeg, png, jpg, atau pdf',
+                ]);
+
+                $bukti = time(). '-' . $request->file('bukti')->getClientOriginalName();
+                $request->file('bukti')->move(public_path('bukti'), $bukti);
+
+                $data = DetailProgram::find($request->id)->update([
+                    'nama_kegiatan' => $request->nama_kegiatan,
+                    'tanggal' => $request->tanggal,
+                    'pengeluaran' => $request->pengeluaran,
+                    'bukti' => $bukti,
+                ]);
+
+                return redirect()->route('prokeg')->with('success', 'Data berhasil diubah');
+            }
+        }
+
+
     }
 
     /**
@@ -114,6 +162,13 @@ class DetailProgramController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $detail = DetailProgram::find($id);
+        $bukti = $detail->bukti;
+        unlink(public_path('bukti/' . $bukti));
+        $detail->delete();
+
+        return response()->json([
+            'success' => 'Data berhasil dihapus'
+        ], 200);
     }
 }

@@ -125,7 +125,7 @@
     <!-- /.content-wrapper -->
 
     <!-- Modal Detail -->
-    <div class="modal" tabindex="-1" id="modalView">
+    <div class="modal modalDetail" tabindex="-1" id="modalView">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -216,7 +216,7 @@
                     <div class="modal-body">
                         @csrf
                         @method('POST')
-                        <input type="text" class="id" name="id">
+                        <input type="hidden" class="id" name="id">
                         <div class="mb-3">
                             <label for="nama_kegiatan"
                                 class="form-label @error('nama_kegiatan') is-invalid @enderror">Nama
@@ -395,6 +395,9 @@
                             html +=
                                 '<td><a href="javascript:void(0)" class="btn btn-warning btn-edit-detail" data-id="' +
                                 item.id + '">Edit</a></td>';
+                            html +=
+                                '<td><a href="javascript:void(0)" class="btn btn-danger btn-delete-detail" data-id="' +
+                                item.id + '">Delete</a></td>';
                             html += '</tr>';
                         });
 
@@ -406,7 +409,7 @@
                     }
                 });
             });
-            $('.modal').on('hidden.bs.modal', function() {
+            $('.modalDetail').on('hidden.bs.modal', function() {
                 $('.table-detail tbody').empty();
             });
             $('.btn-input-detail').on('click', function() {
@@ -430,6 +433,40 @@
                     },
                     error: function(error) {
                         console.log(error);
+                    }
+                });
+            });
+            $('.table-detail').on('click', '.btn-delete-detail', function() {
+                var id = $(this).data('id');
+                console.log(id);
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Terhapus!',
+                            'Data berhasil dihapus.',
+                            'success'
+                        ).then((result) => {
+                            $.ajax({
+                                type: "delete",
+                                url: "/detailprogram/" + id + "/delete",
+                                data: {
+                                    _token: "{{ csrf_token() }}",
+                                    id: id
+                                },
+                                dataType: "json",
+                                success: function(response) {
+                                    location.reload();
+                                }
+                            });
+                        })
                     }
                 });
             });

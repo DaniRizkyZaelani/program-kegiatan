@@ -39,6 +39,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/detailprogram/{id}/view', [DetailProgramController::class, 'index'])->name('detailprogram');
 Route::post('/detailprogram/store', [DetailProgramController::class, 'store'])->name('detailprogram.store');
 Route::get('/detailprogram/{id}/edit', [DetailProgramController::class, 'edit'])->name('detailprogram.edit');
+Route::delete('/detailprogram/{id}/delete', [DetailProgramController::class, 'destroy'])->name('detailprogram.delete');
 
 // Protected route Admin, Mahasiswa, Dekan
 Route::group(
