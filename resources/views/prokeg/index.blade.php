@@ -126,7 +126,7 @@
 
     <!-- Modal Detail -->
     <div class="modal" tabindex="-1" id="modalView">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Detail Program</h5>
@@ -163,7 +163,7 @@
 
     <!-- Modal Input -->
     <div class="modal" tabindex="-1" id="modalInputDetail">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Detail Program</h5>
