@@ -175,15 +175,18 @@
                         @method('POST')
                         <input type="hidden" name="program_kegiatan_id" id="program_kegiatan_id">
                         <div class="mb-3">
-                            <label for="nama_kegiatan" class="form-label @error('nama_kegiatan') is-invalid @enderror">Nama Kegiatan</label>
+                            <label for="nama_kegiatan" class="form-label @error('nama_kegiatan') is-invalid @enderror">Nama
+                                Kegiatan</label>
                             <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan">
                         </div>
                         <div class="mb-3">
-                            <label for="tanggal" class="form-label @error('tanggal') is-invalid @enderror">Tanggal</label>
+                            <label for="tanggal"
+                                class="form-label @error('tanggal') is-invalid @enderror">Tanggal</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal">
                         </div>
                         <div class="mb-3">
-                            <label for="pengeluaran" class="form-label @error('pengeluaran') is-invalid @enderror">Pengeluaran</label>
+                            <label for="pengeluaran"
+                                class="form-label @error('pengeluaran') is-invalid @enderror">Pengeluaran</label>
                             <input type="text" class="form-control" id="pengeluaran" name="pengeluaran">
                         </div>
                         <div class="mb-3">
@@ -330,16 +333,17 @@
                         $.each(response, function(key, item) {
                             html += '<tr>';
                             html += '<td>' + (key + 1) + '</td>';
-                            html += '<td>' + item.program_kegiatan.nama_program +'</td>';
-                                
+                            html += '<td>' + item.program_kegiatan.nama_program +
+                                '</td>';
+
                             html += '<td>' + item.nama_kegiatan + '</td>';
                             html += '<td>' + item.tanggal + '</td>';
                             html += '<td>' + item.pengeluaran + '</td>';
                             html += '<td> <img src="/bukti/' + item.bukti + '"> </td>';
-                            
+
                             html += '</tr>';
                         });
-                        
+
                         $('.table-detail').append(html);
                         $('.btn-input-detail').attr('data-id', id);
                     },
