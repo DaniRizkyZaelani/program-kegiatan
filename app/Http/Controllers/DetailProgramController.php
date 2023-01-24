@@ -42,7 +42,7 @@ class DetailProgramController extends Controller
             'nama_kegiatan' => 'required',
             'tanggal' => 'required',
             'pengeluaran' => 'required',
-            'bukti' => 'required|file|image|mimes:jpeg,png,jpg',
+            'bukti' => 'required|file|mimes:jpeg,png,jpg,pdf',
         ], [
             'program_kegiatan_id.required' => 'Program Kegiatan tidak boleh kosong',
             'nama_kegiatan.required' => 'Nama Kegiatan tidak boleh kosong',
@@ -50,7 +50,6 @@ class DetailProgramController extends Controller
             'pengeluaran.required' => 'Pengeluaran tidak boleh kosong',
             'bukti.required' => 'Bukti tidak boleh kosong',
             'bukti.file' => 'Bukti harus berupa file',
-            'bukti.image' => 'Bukti harus berupa gambar',
             'bukti.mimes' => 'Bukti harus berupa gambar dengan format jpeg, png, atau jpg',
         ]);
 
