@@ -37,6 +37,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::get('/detailprogram/{id}/view', [DetailProgramController::class, 'index'])->name('detailprogram');
+Route::post('/detailprogram/store', [DetailProgramController::class, 'store'])->name('detailprogram.store');
 
 // Protected route Admin, Mahasiswa, Dekan
 Route::group(
