@@ -340,7 +340,8 @@
                             html += '<td>' + item.tanggal + '</td>';
                             html += '<td>' + item.pengeluaran + '</td>';
                             if (item.bukti.split('.').pop() == 'pdf') {
-                                html += '<td> <img src="/image/pdf.png" style="height: 300px;"> </td>';
+                                html += '<td>' + item.bukti + '</td>';
+                                // html += '<td> <img src="/image/pdf.png" style="height: 300px;"> </td>';
                             }else {
                                 html += '<td> <img src="/bukti/' + item.bukti + '" style="height: 300px;"> </td>';
                             }
