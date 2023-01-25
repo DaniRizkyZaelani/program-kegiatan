@@ -384,7 +384,6 @@
                     type: "get",
                     url: "/detailprogram/" + id + "/view",
                     success: function(response) {
-                        console.log(response);
                         var html = '';
                         $.each(response, function(key, item) {
                             html += '<tr>';
@@ -432,13 +431,11 @@
             });
             $('.table-detail').on('click', '.btn-edit-detail', function() {
                 var id = $(this).data('id');
-                console.log(id);
                 $('#modalEditDetail').modal('show');
                 $.ajax({
                     type: "get",
                     url: "/detailprogram/" + id + "/edit",
                     success: function(response) {
-                        console.log(response);
                         $('.id').val(response.id);
                         $('.nama_kegiatan').val(response.nama_kegiatan);
                         $('.tanggal').val(response.tanggal);
@@ -451,7 +448,6 @@
             });
             $('.table-detail').on('click', '.btn-delete-detail', function() {
                 var id = $(this).data('id');
-                console.log(id);
                 Swal.fire({
                     title: 'Apakah anda yakin?',
                     text: "Data yang dihapus tidak dapat dikembalikan!",
