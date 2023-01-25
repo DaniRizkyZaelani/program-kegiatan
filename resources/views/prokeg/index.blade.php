@@ -407,15 +407,17 @@
                             
                             
                             
-                            if (item.role == 'admin') {
-                                html +=
+                            
+                                html += 
+                                '@if (Auth::user()->role == "admin")' +
                                 '<td><a href="javascript:void(0)" class="btn btn-warning btn-edit-detail" data-id="' +
-                                item.id + '">Edit</a></td>';
-
-                                html +=
-                                    '<td><a href="javascript:void(0)" class="btn btn-danger btn-delete-detail" data-id="' +
+                                item.id + '">Edit</a></td>'+
+                                '<td><a href="javascript:void(0)" class="btn btn-danger btn-delete-detail" data-id="' +
                                 item.id + '">Delete</a></td>';
-                            }
+                                '@endif';
+                                
+                                    
+                            
 
                             html += '</tr>';
                         });
