@@ -36,18 +36,19 @@
                         </p>
                     </a>
                 </li>
-                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'dekan'))
-                    
-                <li class="nav-header">Bidang</li>
-                <li class="nav-item">
-                    <a href="{{ route('bidang') }}" class="nav-link {{ Request::is('bidang*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-book-open"></i>
-                        <p>
-                            Bidang
-                        </p>
-                    </a>
-                </li>
-               @endif
+                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'dekan')
+                    )
+
+                    <li class="nav-header">Bidang</li>
+                    <li class="nav-item">
+                        <a href="{{ route('bidang') }}" class="nav-link {{ Request::is('bidang*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-book-open"></i>
+                            <p>
+                                Bidang
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-header">Kegiatan</li>
 
                 <li class="nav-item has-treeview {{ Request::is('prokeg*') ? 'menu-open' : '' }}">
@@ -60,68 +61,62 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('prokeg') }}" class="nav-link {{ Request::is('prokeg') ? 'active' : '' }}">
+                            <a href="{{ route('prokeg') }}"
+                                class="nav-link {{ Request::is('prokeg') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Daftar Kegiatan</p>
                             </a>
                         </li>
-                        @if (Auth::user()->role == 'mahasiswa')
-                            
-                        
-                        <li class="nav-item">
-                            <a href="{{ route('prokeg.create') }}" class="nav-link {{ Request::is('prokeg/create') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Pendaftaran Kegiatan</p>
-                            </a>
-                        </li>
+                        @if (Auth::user()->role == 'mahasiswa' || Auth::user()->role == 'dosen')
+                            <li class="nav-item">
+                                <a href="{{ route('prokeg.create') }}"
+                                    class="nav-link {{ Request::is('prokeg/create') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Pendaftaran Kegiatan</p>
+                                </a>
+                            </li>
                         @endif
                     </ul>
                 </li>
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'dekan')
-                    
+                    <li class="nav-header">Laporan</li>
 
-                <li class="nav-header">Laporan</li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-envelope"></i>
+                            <p>
+                                Menunggu Approval
+                                <i class="fas fa-angle-left right"></i>
 
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
-                        <p>
-                            Menunggu Approval
-                            <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('prokeg.showpending') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kegiatan Pending</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="bukti.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Bukti</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+                @if (Auth::user()->role == 'admin')
+                    <li class="nav-header">MANAGE SYSTEM</li>
 
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('prokeg.showpending') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Kegiatan Pending</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="bukti.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Bukti</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                 @endif
-                 @if(Auth::user()->role == 'admin')
-                     
-                 
-                 
-                <li class="nav-header">MANAGE SYSTEM</li>
-
-                <li class="nav-item">
-                    <a href="{{ route('users') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            Users
-                        </p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('users') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Users
+                            </p>
+                        </a>
+                    </li>
                 @endif
 
                 <li class="nav-header"></li>

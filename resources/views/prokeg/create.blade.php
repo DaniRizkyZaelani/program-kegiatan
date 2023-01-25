@@ -35,9 +35,9 @@
                             <label for="penanggung_jawab_id">Penanggung Jawab</label>
                             <select name="penanggung_jawab_id" id="penanggung_jawab_id" class="form-control">
                                 @foreach ($users as $item => $value)
-                                @if ($value->role == 'admin' || $value->role == 'mahasiswa')
-                                    @continue
-                                @endif
+                                    @if ($value->role == 'admin')
+                                        @continue
+                                    @endif
                                     <option value="{{ $value->id }}">{{ $value->name }}</option>
                                 @endforeach
                             </select>

@@ -40,6 +40,7 @@
                                 <option selected>-- Pilih Role --</option>
                                 <option value="admin">Admin</option>
                                 <option value="dekan">Dekan</option>
+                                <option value="dosen">Dosen</option>
                                 <option value="mahasiswa">Mahasiswa</option>
                             </select>
                         </div>
@@ -71,7 +72,7 @@
                     Footer
                 </div>
                 <!-- /.card-footer-->
-            <!-- /.card -->
+                <!-- /.card -->
         </section>
         <!-- /.content -->
     </div>

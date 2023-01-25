@@ -72,10 +72,7 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
-                          <section class="content"></section>
-
             </div>
         </section>
     </div>

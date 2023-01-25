@@ -43,22 +43,14 @@ Route::delete('/detailprogram/{id}/delete', [DetailProgramController::class, 'de
 
 // Protected route Admin, Mahasiswa, Dekan
 Route::group(
-    ['middleware' => ['auth', 'checkrole:admin,mahasiswa,dekan']],
+    ['middleware' => ['auth', 'checkrole:admin,mahasiswa,dekan,dosen']],
     function () {
         // Dashboard route
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name(
-            'dashboard'
-        );
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         //Program Kegiatan route
-        Route::get('/prokeg', [
-            ProgramKegiatanController::class,
-            'index',
-        ])->name('prokeg');
-        Route::get('/prokeg/cari', [
-            ProgramKegiatanController::class,
-            'cari',
-        ])->name('prokeg.cari');
+        Route::get('/prokeg', [ProgramKegiatanController::class,'index',])->name('prokeg');
+        Route::get('/prokeg/cari', [ProgramKegiatanController::class,'cari'])->name('prokeg.cari');
     }
 );
 
@@ -66,57 +58,26 @@ Route::group(
 Route::group(['middleware' => ['auth', 'checkrole:admin,dekan']], function () {
     // Bidang route
     Route::get('/bidang', [BidangController::class, 'index'])->name('bidang');
-    Route::get('/bidang/cari', [BidangController::class, 'cari'])->name(
-        'bidang.cari'
-    );
-    Route::get('/bidang/create', [BidangController::class, 'create'])->name(
-        'bidang.create'
-    );
-    Route::post('/bidang/store', [BidangController::class, 'store'])->name(
-        'bidang.store'
-    );
-    Route::get('/bidang/{id}/edit', [BidangController::class, 'edit'])->name(
-        'bidang.edit'
-    );
-    Route::delete('/bidang/{id}/delete', [
-        BidangController::class,
-        'destroy',
-    ])->name('bidang.destroy');
+    Route::get('/bidang/cari', [BidangController::class, 'cari'])->name('bidang.cari');
+    Route::get('/bidang/create', [BidangController::class, 'create'])->name('bidang.create');
+    Route::post('/bidang/store', [BidangController::class, 'store'])->name('bidang.store');
+    Route::get('/bidang/{id}/edit', [BidangController::class, 'edit'])->name('bidang.edit');
+    Route::delete('/bidang/{id}/delete', [BidangController::class,'destroy',])->name('bidang.destroy');
 
     //show route
-    Route::get('/prokeg/showpending', [
-        ProgramKegiatanController::class,
-        'showpending',
-    ])->name('prokeg.showpending');
-    Route::get('/prokeg/showsuccess', [
-        ProgramKegiatanController::class,
-        'showsuccess',
-    ])->name('prokeg.showsuccess');
+    Route::get('/prokeg/showpending', [ProgramKegiatanController::class, 'showpending'])->name('prokeg.showpending');
+    Route::get('/prokeg/showsuccess', [ProgramKegiatanController::class, 'showsuccess'])->name('prokeg.showsuccess');
 
     // Kegiatan route
-    Route::get('/prokeg/{id}/approved', [
-        ProgramKegiatanController::class,
-        'approve',
-    ])->name('kegiatan.approve');
-    Route::get('/prokeg/{id}/rejected', [
-        ProgramKegiatanController::class,
-        'reject',
-    ])->name('kegiatan.reject');
+    Route::get('/prokeg/{id}/approved', [ProgramKegiatanController::class, 'approve'])->name('kegiatan.approve');
+    Route::get('/prokeg/{id}/rejected', [ProgramKegiatanController::class,'reject',])->name('kegiatan.reject');
 });
 
-// Protected route Admin, Mahasiswa
-Route::group(
-    ['middleware' => ['auth', 'checkrole:admin,mahasiswa']],
-    function () {
+// Protected route Admin, Mahasiswa, Dosen
+Route::group(['middleware' => ['auth', 'checkrole:admin,mahasiswa,dosen']], function () {
         //Program Kegiatan route
-        Route::get('/prokeg/create', [
-            ProgramKegiatanController::class,
-            'create',
-        ])->name('prokeg.create');
-        Route::post('/prokeg/store', [
-            ProgramKegiatanController::class,
-            'store',
-        ])->name('prokeg.store');
+        Route::get('/prokeg/create', [ProgramKegiatanController::class,'create',])->name('prokeg.create');
+        Route::post('/prokeg/store', [ProgramKegiatanController::class,'store',])->name('prokeg.store');
     }
 );
 
@@ -124,27 +85,12 @@ Route::group(
 Route::group(['middleware' => ['auth', 'checkrole:admin']], function () {
     // Users route
     Route::get('/users', [UserController::class, 'index'])->name('users');
-    Route::get('/users/create', [UserController::class, 'create'])->name(
-        'users.create'
-    );
-    Route::post('/users/store', [UserController::class, 'store'])->name(
-        'users.store'
-    );
-    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name(
-        'users.edit'
-    );
-    Route::delete('/users/{id}/delete', [
-        UserController::class,
-        'destroy',
-    ])->name('users.destroy');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::delete('/users/{id}/delete', [UserController::class, 'destroy',])->name('users.destroy');
 
     //Program Kegiatan route
-    Route::get('/prokeg/{id}/edit', [
-        ProgramKegiatanController::class,
-        'edit',
-    ])->name('prokeg.edit');
-    Route::delete('/prokeg/{id}/delete', [
-        ProgramKegiatanController::class,
-        'destroy',
-    ])->name('prokeg.destroy');
+    Route::get('/prokeg/{id}/edit', [ProgramKegiatanController::class, 'edit'])->name('prokeg.edit');
+    Route::delete('/prokeg/{id}/delete', [ProgramKegiatanController::class, 'destroy'])->name('prokeg.destroy');
 });
