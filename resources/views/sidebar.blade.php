@@ -37,7 +37,6 @@
                     </a>
                 </li>
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'dekan')
-                    )
 
                     <li class="nav-header">Bidang</li>
                     <li class="nav-item">
