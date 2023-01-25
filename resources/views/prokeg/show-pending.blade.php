@@ -69,7 +69,7 @@
                                         <td>
                                             <a href="{{ route('prokeg') }}/{{ $value->id }}/edit" class="btn btn-warning">Edit</a>
                                             @if($value->status == 1 || $value->status == 2)
-
+                                            
                                                 @else
                                                     @if (Auth::user()->role == 'dekan')
                                                 |

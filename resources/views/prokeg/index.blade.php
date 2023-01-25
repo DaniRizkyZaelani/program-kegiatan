@@ -91,10 +91,14 @@
                                             </td>
 
                                             <td>
-                                                <a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
-                                                    class="btn btn-warning">Edit</a> |
-                                                <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                    class="btn btn-danger btn-delete">Hapus</a> |
+                                                
+                                                @if (Auth::user()->role == 'admin')
+                                                    <a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
+                                                        class="btn btn-warning">Edit</a> |
+                                                    <a href="javascript:void(0)" data-id="{{ $value->id }}"
+                                                        class="btn btn-danger btn-delete">Hapus</a> |
+                                                @endif
+                                                
                                                 @if ($value->status == 1 || $value->status == 2)
                                                 @else
                                                     @if (Auth::user()->role == 'dekan')
@@ -103,8 +107,13 @@
                                                             class="btn btn-primary btn-approve">Approvement</a>
                                                     @endif
                                                 @endif
-                                                <a href="javascript:void(0)" data-id="{{ $value->id }}"
+
+                                                @if ($value->status == 1)
+                                                    <a href="javascript:void(0)" data-id="{{ $value->id }}"
                                                     class="btn btn-success btn-view">Lihat</a>
+                                                    
+                                                @endif
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
@@ -133,7 +142,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <a href="javascript:void(0)" class="btn btn-primary mb-3 btn-input-detail">Tambah</a>
+                    @if (Auth::user()->role == 'dosen' || Auth::user()->role == 'mahasiswa')
+                        <a href="javascript:void(0)" class="btn btn-primary mb-3 btn-input-detail">Tambah</a>
+                    @endif
+                    
                     <div class="table-responsive">
                         <table class="table table-detail">
                             <thead>
@@ -392,12 +404,19 @@
                             }
                             html += '<td><a href="/bukti/' + item.bukti +
                                 '" class="btn btn-primary download">Download</a></td>';
-                            html +=
+                            
+                            
+                            
+                            if (item.role == 'admin') {
+                                html +=
                                 '<td><a href="javascript:void(0)" class="btn btn-warning btn-edit-detail" data-id="' +
                                 item.id + '">Edit</a></td>';
-                            html +=
-                                '<td><a href="javascript:void(0)" class="btn btn-danger btn-delete-detail" data-id="' +
+
+                                html +=
+                                    '<td><a href="javascript:void(0)" class="btn btn-danger btn-delete-detail" data-id="' +
                                 item.id + '">Delete</a></td>';
+                            }
+
                             html += '</tr>';
                         });
 
