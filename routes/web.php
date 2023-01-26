@@ -68,10 +68,12 @@ Route::group(['middleware' => ['auth', 'checkrole:admin,dekan']], function () {
     //show route
     Route::get('/prokeg/showpending', [ProgramKegiatanController::class, 'showpending'])->name('prokeg.showpending');
     Route::get('/prokeg/showsuccess', [ProgramKegiatanController::class, 'showsuccess'])->name('prokeg.showsuccess');
+    Route::get('/prokeg/bukti', [ProgramKegiatanController::class, 'showbukti'])->name('prokeg.bukti');
 
     // Kegiatan route
     Route::get('/prokeg/{id}/approved', [ProgramKegiatanController::class, 'approve'])->name('kegiatan.approve');
     Route::get('/prokeg/{id}/rejected', [ProgramKegiatanController::class,'reject',])->name('kegiatan.reject');
+    
 });
 
 // Protected route Admin, Mahasiswa, Dosen
