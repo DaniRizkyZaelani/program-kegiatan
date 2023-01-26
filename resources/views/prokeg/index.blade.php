@@ -33,7 +33,7 @@
 
                         </div>
                         <div class="col-6">
-                            <form action="#" method="GET">
+                            <form action="{{ route('prokeg.cari') }}" method="GET">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Cari Program Kegiatan"
                                         name="cari" value="{{ old('cari') }}">

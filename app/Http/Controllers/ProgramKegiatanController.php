@@ -106,6 +106,7 @@ class ProgramKegiatanController extends Controller
     public function showbukti()
     {
         $detail = DetailProgram::all();
+
         return view('prokeg.bukti', ['detail' => $detail]);
     }
 

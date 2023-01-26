@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProgramKegiatanController;
 use App\Http\Controllers\DetailProgramController;
+use App\Models\DetailProgram;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::post('/detailprogram/store', [DetailProgramController::class, 'store'])->
 Route::get('/detailprogram/{id}/edit', [DetailProgramController::class, 'edit'])->name('detailprogram.edit');
 Route::delete('/detailprogram/{id}/delete', [DetailProgramController::class, 'destroy'])->name('detailprogram.delete');
 Route::get('/detailprogram/{id}/download', [DetailProgramController::class, 'download'])->name('detailprogram.download');
+Route::get('/detailprogram/cari', [DetailProgramController::class,'cari'])->name('detailprogram.cari');
 
 // Protected route Admin, Mahasiswa, Dekan
 Route::group(

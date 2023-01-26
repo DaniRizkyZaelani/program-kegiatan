@@ -12,9 +12,12 @@
         </section>
 
         <!-- Main content -->
+        
         <section class="content">
 
             <!-- Default box -->
+            
+
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Detail Kegiatan & Bukti</h3>
@@ -24,13 +27,14 @@
                         </button>
                     </div>
                 </div>
+                
                 <div class="card-body">
                     <div class="row">
 
                         <div class="col-6">
-                            <form action="#" method="GET">
+                            <form action="{{ route('detailprogram.cari') }}" method="GET">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Cari Program Kegiatan"
+                                    <input type="text" class="form-control" placeholder="Cari Nama Kegiatan"
                                         name="cari" value="{{ old('cari') }}">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">Cari</button>
@@ -39,12 +43,11 @@
                             </form>
                         </div>
                     </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-                        <a href="#" class="btn btn-warning mr-2">Export PDF</a>
-                        <a href="#" class="btn btn-primary">Export Excel</a>
-                    </div>
                     <div class="row">
                         <div class="table-responsive">
+                            
+                                
+                               
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -64,24 +67,38 @@
                                             <td>{{ $value->nama_kegiatan }}</td>
                                             <td>@date($value->tanggal)</td>
                                             <td>{{ $value->pengeluaran }}</td>
-                                            <td>{{ $value->bukti }}</td>
+                                            <td>
+                                                @if (strpos($value->bukti, '.pdf'))
+                                                    {{  $value->bukti  }}
+                                                @elseif (strpos($value->bukti, '.jpg') || strpos($value->bukti, '.png' ))
+                                                    <img src="{{ asset('bukti/' . $value->bukti) }}" alt="bukti"
+                                                        height="300px">
+                                                @endif
+                                                
+                                            </td>
+                                            
 
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            
                         </div>
+                        
                     </div>
                 </div>
+                 
                 <!-- /.card-body -->
                 <div class="card-footer">
                     Footer
                 </div>
+                
                 <!-- /.card-footer-->
                 <!-- /.card -->
         </section>
         <!-- /.content -->
     </div>
+    
     <!-- /.content-wrapper -->
 
 @endsection
