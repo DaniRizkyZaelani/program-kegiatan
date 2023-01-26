@@ -40,6 +40,7 @@ Route::get('/detailprogram/{id}/view', [DetailProgramController::class, 'index']
 Route::post('/detailprogram/store', [DetailProgramController::class, 'store'])->name('detailprogram.store');
 Route::get('/detailprogram/{id}/edit', [DetailProgramController::class, 'edit'])->name('detailprogram.edit');
 Route::delete('/detailprogram/{id}/delete', [DetailProgramController::class, 'destroy'])->name('detailprogram.delete');
+Route::get('/detailprogram/{id}/download', [DetailProgramController::class, 'download'])->name('detailprogram.download');
 
 // Protected route Admin, Mahasiswa, Dekan
 Route::group(

@@ -18,6 +18,13 @@ class DetailProgramController extends Controller
         return response()->json($data, 200);
     }
 
+    public function download($id)
+    {
+        $data = DetailProgram::find($id);
+        $file = public_path('bukti/' . $data->bukti);
+        return response()->download($file);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

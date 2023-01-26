@@ -401,8 +401,8 @@
                                 html += '<td> <img src="/bukti/' + item.bukti +
                                     '" style="height: 300px;"> </td>';
                             }
-                            html += '<td><a href="/bukti/' + item.bukti +
-                                '" class="btn btn-primary download">Download</a></td>';
+                            html += '<td><a href="/detailprogram/' + item.id +
+                                '/download" class="btn btn-primary download">Download</a></td>';
                                 html +=
                                 '@if (Auth::user()->role == "admin")' +
                                 '<td><a href="javascript:void(0)" class="btn btn-warning btn-edit-detail" data-id="' +
