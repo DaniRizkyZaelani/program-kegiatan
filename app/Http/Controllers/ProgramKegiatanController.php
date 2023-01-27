@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ProgramKegiatan;
 use App\Models\User;
 use App\Models\Bidang;
-use App\Models\DetailProgram;
+use Carbuse App\Models\DetailProgram;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\ErrorHandler\Debug;
@@ -108,13 +108,7 @@ class ProgramKegiatanController extends Controller
         $detail = DetailProgram::all();
 
         return view('prokeg.bukti', ['detail' => $detail]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+turn \Illuminate\Http\Response
      */
 
     public function showpending(Request $request)
