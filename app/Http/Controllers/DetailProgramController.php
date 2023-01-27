@@ -18,6 +18,13 @@ class DetailProgramController extends Controller
         return response()->json($data, 200);
     }
 
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+        $detail = DetailProgram::where('nama_kegiatan', 'like', "%" . $cari . "%")->get();
+        return view('prokeg.bukti', ['detail' => $detail]);
+    }
+
     public function download($id)
     {
         $data = DetailProgram::find($id);

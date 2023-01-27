@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProgramKegiatanController;
 use App\Http\Controllers\DetailProgramController;
+use App\Models\DetailProgram;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::post('/detailprogram/store', [DetailProgramController::class, 'store'])->
 Route::get('/detailprogram/{id}/edit', [DetailProgramController::class, 'edit'])->name('detailprogram.edit');
 Route::delete('/detailprogram/{id}/delete', [DetailProgramController::class, 'destroy'])->name('detailprogram.delete');
 Route::get('/detailprogram/{id}/download', [DetailProgramController::class, 'download'])->name('detailprogram.download');
+Route::get('/detailprogram/cari', [DetailProgramController::class,'cari'])->name('detailprogram.cari');
 
 // Protected route Admin, Mahasiswa, Dekan
 Route::group(
@@ -66,10 +68,12 @@ Route::group(['middleware' => ['auth', 'checkrole:admin,dekan']], function () {
     //show route
     Route::get('/prokeg/showpending', [ProgramKegiatanController::class, 'showpending'])->name('prokeg.showpending');
     Route::get('/prokeg/showsuccess', [ProgramKegiatanController::class, 'showsuccess'])->name('prokeg.showsuccess');
+    Route::get('/prokeg/bukti', [ProgramKegiatanController::class, 'showbukti'])->name('prokeg.bukti');
 
     // Kegiatan route
     Route::get('/prokeg/{id}/approved', [ProgramKegiatanController::class, 'approve'])->name('kegiatan.approve');
     Route::get('/prokeg/{id}/rejected', [ProgramKegiatanController::class,'reject',])->name('kegiatan.reject');
+    
 });
 
 // Protected route Admin, Mahasiswa, Dosen

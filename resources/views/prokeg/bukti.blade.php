@@ -12,30 +12,29 @@
         </section>
 
         <!-- Main content -->
+        
         <section class="content">
 
             <!-- Default box -->
+            
+
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Daftar Kegiatan</h3>
+                    <h3 class="card-title">Detail Kegiatan & Bukti</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
                         </button>
                     </div>
                 </div>
+                
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-6">
-                            @if (Auth::user()->role == 'mahasiswa')
-                                <a href="{{ route('prokeg.create') }}" class="btn btn-primary mb-4">Tambah</a>
-                            @endif
 
-                        </div>
                         <div class="col-6">
-                            <form action="{{ route('prokeg.cari') }}" method="GET">
+                            <form action="{{ route('detailprogram.cari') }}" method="GET">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Cari Program Kegiatan"
+                                    <input type="text" class="form-control" placeholder="Cari Nama Kegiatan"
                                         name="cari" value="{{ old('cari') }}">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">Cari</button>
@@ -44,221 +43,64 @@
                             </form>
                         </div>
                     </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-                        <a href="#" class="btn btn-warning mr-2">Export PDF</a>
-                        <a href="#" class="btn btn-primary">Export Excel</a>
-                    </div>
                     <div class="row">
                         <div class="table-responsive">
+                            
+                                
+                               
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Program</th>
-                                        <th>Nama Pengaju</th>
-                                        <th>Nama Penanggung Jawab</th>
-                                        <th>Bidang</th>
-                                        <th>Status</th>
-                                        <th>Tanggal Pengajuan</th>
-                                        <th>Tanggal Mulai</th>
-                                        <th>Tanggal Selesai</th>
-                                        <th>Anggaran</th>
-                                        <th style="width: 500px">Aksi</th>
+                                        <th>Nama Kegiatan</th>
+                                        <th>Tanggal</th>
+                                        <th>Pengeluaran</th>
+                                        <th>Bukti</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($prokeg as $item => $value)
+                                    @foreach ($detail as $item => $value)
                                         <tr>
-                                            <td>{{ $item + 1 }}</td>
-                                            <td>{{ $value->nama_program }}</td>
-                                            <td>{{ $value->user->name }}</td>
-                                            <td>{{ $value->penanggung_jawab->name }}</td>
-                                            <td>{{ $value->bidang->name }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $value->program_kegiatan->nama_program }}</td>
+                                            <td>{{ $value->nama_kegiatan }}</td>
+                                            <td>@date($value->tanggal)</td>
+                                            <td>{{ $value->pengeluaran }}</td>
                                             <td>
-                                                @if ($value->status == null)
-                                                    <span class="badge badge-warning">Menunggu</span>
-                                                @elseif ($value->status == 1)
-                                                    <span class="badge badge-success">Disetujui</span>
-                                                @elseif ($value->status == 2)
-                                                    <span class="badge badge-danger">Ditolak</span>
+                                                @if (strpos($value->bukti, '.pdf'))
+                                                    {{  $value->bukti  }}
+                                                @elseif (strpos($value->bukti, '.jpg') || strpos($value->bukti, '.png' ))
+                                                    <img src="{{ asset('bukti/' . $value->bukti) }}" alt="bukti"
+                                                        height="300px">
                                                 @endif
+                                                
                                             </td>
-                                            <td>@date($value->tanggal_pengajuan)</td>
-                                            <td>@date($value->tanggal_mulai)</td>
-                                            <td>@date($value->tanggal_selesai)</td>
-                                            <td>Rp.
-                                                @convert($value->anggaran)
-                                            </td>
+                                            
 
-                                            <td>
-
-                                                @if (Auth::user()->role == 'admin')
-                                                    <a href="{{ route('prokeg') }}/{{ $value->id }}/edit"
-                                                        class="btn btn-warning">Edit</a> |
-                                                    <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                        class="btn btn-danger btn-delete">Hapus</a> |
-                                                @endif
-
-                                                @if ($value->status == 1 || $value->status == 2)
-                                                @else
-                                                    @if (Auth::user()->role == 'dekan')
-                                                        |
-                                                        <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                            class="btn btn-primary btn-approve">Approvement</a>
-                                                    @endif
-                                                @endif
-
-                                                @if ($value->status == 1)
-                                                    <a href="javascript:void(0)" data-id="{{ $value->id }}"
-                                                    class="btn btn-success btn-view">Lihat</a>
-
-                                                @endif
-
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            
                         </div>
+                        
                     </div>
                 </div>
+                 
                 <!-- /.card-body -->
                 <div class="card-footer">
                     Footer
                 </div>
+                
                 <!-- /.card-footer-->
                 <!-- /.card -->
         </section>
         <!-- /.content -->
     </div>
+    
     <!-- /.content-wrapper -->
 
-    <!-- Modal Detail -->
-    <div class="modal modalDetail" tabindex="-1" id="modalView">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Detail Program</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @if (Auth::user()->role == 'dosen' || Auth::user()->role == 'mahasiswa')
-                        <a href="javascript:void(0)" class="btn btn-primary mb-3 btn-input-detail">Tambah</a>
-                    @endif
-
-                    <div class="table-responsive">
-                        <table class="table table-detail">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Nama Program</th>
-                                    <th>Nama kegiatan</th>
-                                    <th>Tanggal</th>
-                                    <th>Pengeluaran</th>
-                                    <th>Bukti</th>
-                                    <th style="width: 100px">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary modal-close" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Input -->
-    <div class="modal" tabindex="-1" id="modalInputDetail">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Detail Program</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ route('detailprogram.store') }}" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        @csrf
-                        @method('POST')
-                        <input type="hidden" name="program_kegiatan_id" id="program_kegiatan_id">
-                        <div class="mb-3">
-                            <label for="nama_kegiatan" class="form-label @error('nama_kegiatan') is-invalid @enderror">Nama
-                                Kegiatan</label>
-                            <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan">
-                        </div>
-                        <div class="mb-3">
-                            <label for="tanggal"
-                                class="form-label @error('tanggal') is-invalid @enderror">Tanggal</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal">
-                        </div>
-                        <div class="mb-3">
-                            <label for="pengeluaran"
-                                class="form-label @error('pengeluaran') is-invalid @enderror">Pengeluaran</label>
-                            <input type="text" class="form-control" id="pengeluaran" name="pengeluaran">
-                        </div>
-                        <div class="mb-3">
-                            <label for="bukti" class="form-label @error('bukti') is-invalid @enderror">Bukti</label>
-                            <input type="file" class="form-control" id="bukti" name="bukti">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary modal-close"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Edit -->
-    <div class="modal" tabindex="-1" id="modalEditDetail">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Detail Program</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ route('detailprogram.store') }}" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        @csrf
-                        @method('POST')
-                        <input type="hidden" class="id" name="id">
-                        <div class="mb-3">
-                            <label for="nama_kegiatan"
-                                class="form-label @error('nama_kegiatan') is-invalid @enderror">Nama
-                                Kegiatan</label>
-                            <input type="text" class="form-control nama_kegiatan" name="nama_kegiatan">
-                        </div>
-                        <div class="mb-3">
-                            <label for="tanggal"
-                                class="form-label @error('tanggal') is-invalid @enderror">Tanggal</label>
-                            <input type="date" class="form-control tanggal" name="tanggal">
-                        </div>
-                        <div class="mb-3">
-                            <label for="pengeluaran"
-                                class="form-label @error('pengeluaran') is-invalid @enderror">Pengeluaran</label>
-                            <input type="text" class="form-control pengeluaran" name="pengeluaran">
-                        </div>
-                        <div class="mb-3">
-                            <label for="bukti" class="form-label @error('bukti') is-invalid @enderror">Bukti</label>
-                            <input type="file" class="form-control bukti" name="bukti">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary modal-close"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @push('css')

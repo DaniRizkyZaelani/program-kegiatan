@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\ProgramKegiatan;
 use App\Models\User;
 use App\Models\Bidang;
+use App\Models\DetailProgram;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\ErrorHandler\Debug;
 
 class ProgramKegiatanController extends Controller
 {
@@ -19,7 +21,9 @@ class ProgramKegiatanController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'mahasiswa') {
-            $prokeg = ProgramKegiatan::where('user_id', Auth::user()->id)->orderBy('tanggal_pengajuan', 'asc')->get();
+            $prokeg = ProgramKegiatan::where('user_id', Auth::user()->id)
+                ->orderBy('tanggal_pengajuan', 'asc')
+                ->get();
             return view('prokeg.index', ['prokeg' => $prokeg]);
         }
         $prokeg = ProgramKegiatan::orderBy('tanggal_pengajuan', 'asc')->get();
@@ -29,7 +33,11 @@ class ProgramKegiatanController extends Controller
     public function cari(Request $request)
     {
         $cari = $request->cari;
-        $prokeg = ProgramKegiatan::where('nama_program', 'like', "%" . $cari . "%")->get();
+        $prokeg = ProgramKegiatan::where(
+            'nama_program',
+            'like',
+            '%' . $cari . '%'
+        )->get();
         return view('prokeg.index', ['prokeg' => $prokeg]);
     }
 
@@ -93,6 +101,13 @@ class ProgramKegiatanController extends Controller
         return redirect()
             ->route('prokeg')
             ->with('status', 'Data Berhasil Dimasuakan');
+    }
+
+    public function showbukti()
+    {
+        $detail = DetailProgram::all();
+
+        return view('prokeg.bukti', ['detail' => $detail]);
     }
 
     /**
