@@ -37,7 +37,6 @@
                     </a>
                 </li>
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'dekan')
-
                     <li class="nav-header">Bidang</li>
                     <li class="nav-item">
                         <a href="{{ route('bidang') }}" class="nav-link {{ Request::is('bidang*') ? 'active' : '' }}">
@@ -97,7 +96,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('prokeg.bukti') }}" class="nav-link {{ Request::is('prokeg.bukti*') ? 'active' : '' }}">
+                                <a href="{{ route('prokeg.bukti') }}"
+                                    class="nav-link {{ Request::is('prokeg.bukti*') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Bukti</p>
                                 </a>
